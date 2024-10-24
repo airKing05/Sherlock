@@ -1,0 +1,76 @@
+/* Reset and Normalize */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set up a root font size for easy scaling */
+html {
+    font-size: 16px;
+    /* 1rem = 16px */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Body defaults */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #3498db;
+    }
+}
+
+/* Utility classes */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .container {
+        width: 95%;
+    }
+}
