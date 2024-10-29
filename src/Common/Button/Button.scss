@@ -1,0 +1,14 @@
+@use '../../commonStyles/index' as *;
+
+.button {
+    padding: .3em .5em;
+    background: $primary-color;
+    color: $white;
+    border-radius: 5px;
+    border: none;
+}
+
+.button__body {
+    display: flex;
+    align-items: center;
+}

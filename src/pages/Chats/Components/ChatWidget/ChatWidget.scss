@@ -1,0 +1,70 @@
+@use '../../../../commonStyles/index' as *;
+
+.chatWidget__wrapper {
+    border: 1px solid $border-color;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    gap: .5em;
+    margin-bottom: 2em;
+}
+
+.chatWidget__wrapper--me {
+    gap: .5em;
+    margin-bottom: 2em;
+}
+
+.chatWidget__profile {}
+
+.chatWidget__main {
+    font-size: $font-size-small;
+
+    p {
+        color: $test-color-1;
+    }
+}
+
+.chatWidget__header {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+    h5 {
+        font-size: $heading-font-size-5;
+        text-transform: capitalize;
+    }
+
+    .chatWidget__verticalLine {
+        height: 1rem;
+        border-right: 1px solid $border-color;
+    }
+
+    span {
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        color: $test-color-1;
+    }
+}
+
+.chatWidget__footer {
+    display: flex;
+    // border: 1px solid $border-color;
+    justify-content: space-between;
+    margin-top: 2em;
+
+
+    .chatWidget__footer__iconList {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+
+    }
+
+    .chatWidget__footer__tag span {
+        background-color: $gray-light;
+        padding: .5em;
+        border-radius: 5px;
+        font-size: $font-size-xs;
+    }
+}

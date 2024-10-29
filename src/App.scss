@@ -1,5 +1,39 @@
-@import './commonStyles/ColorsVariables.scss';
+@use './commonStyles/index' as *;
 
-.om{
-    background-color: $primary-color;
+.iconContainer{
+    border: 1px solid $border-color;
+    border-radius: 50%;
 }
+
+.row{
+    display: flex;
+}
+
+.display-none{
+    display: none;
+}
+
+.display-block {
+    display: block !important;
+}
+
+.text-success{
+    color: $success-color;
+}
+.text-error {
+    color: $error-color;
+}
+
+.btn{
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: $background-color-second;
+    border-radius: 5px;
+}
+
+.mt-1{
+    margin-top: .625em;
+}
+

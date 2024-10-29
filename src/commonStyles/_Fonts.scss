@@ -1,0 +1,28 @@
+// Font Families
+$font-family-base: 'Arial', sans-serif;
+$font-family-secondary: 'Georgia', serif;
+
+// Base Font Size
+$font-size-base: 16px;
+$font-size-xxs: 0.625rem; // 10px
+$font-size-xs: 0.75rem; // 12px
+$font-size-small: 0.875rem; // 14px
+$font-size-medium: 1rem; // 16px
+$font-size-large: 1.25rem; // 20px
+$font-size-xl: 2rem; // 32px
+
+// Line Heights
+$line-height-base: 1.6;
+$line-height-heading: 1.2;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Heading Sizes
+$heading-font-size-1: 2.5rem; // H1
+$heading-font-size-2: 2rem; // H2
+$heading-font-size-3: 1.75rem; // H3
+$heading-font-size-4: 1.5rem; // H4
+$heading-font-size-5: 1.25rem; // H5
+$heading-font-size-6: 1rem; // H6

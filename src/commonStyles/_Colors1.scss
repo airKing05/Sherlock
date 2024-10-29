@@ -1,0 +1,41 @@
+// Primary Colors
+$primary-color: #6A0DAD;
+$secondary-color: #6E6E6E;
+
+// Accent Colors
+$accent-color: #FF007F; // For highlights or attention-grabbing elements
+// $accent-color-light: #FFD966; // A lighter accent for backgrounds or subtle highlights
+
+// Neutral Colors
+$background-color: #FAFAFA; // Light background for main page sections
+$background-color-second: #fafbf8;
+$border-color: #E0E0E0; // Neutral border color for dividers or lines
+$test-color-1: #5d5d5d;
+$text-color: #222222; // Main text color for readability
+$text-color-light: #888888; // Secondary or muted text
+
+// Success and Error Colors
+$success-color: #28A745; // Success indicators like icons or messages
+$warning-color: #FFC107; // Warnings or cautions
+$error-color: #DC3545; // Errors or alerts
+
+// Shades of Primary Color (useful for variations on the main color)
+$primary-color-light-90: #F9E6FA; // #796AFF; // Light variation of primary color for backgrounds or highlights
+$primary-color-light-30: #AD60CC;
+$primary-color-light-60: #E099EB;
+$secondary-color-light-50: #E0E0E0;
+
+$primary-color-dark: #3A21A3; // Darker shade for borders or accents
+
+// Shades of Secondary Color
+$secondary-color-light: #9A9CB0; // Light version of secondary color
+$secondary-color-dark: #464655; // Dark version for contrast or text
+
+// Utility Colors
+$white: #FFFFFF;
+$black: #000000;
+$gray-light: #E5E5E5; // Light gray for backgrounds or borders
+$gray-dark: #4A4A4A; // Dark gray for text or subdued elements
+
+// box-shadow
+$box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

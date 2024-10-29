@@ -1,0 +1,9 @@
+@use '../../../../commonStyles/index' as *;
+.chip {
+    border: 1px solid $border-color;
+    background-color: $primary-color-light-90; //$background-color-second;
+    padding: .25em 1em;
+    border-radius: 5px;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+}

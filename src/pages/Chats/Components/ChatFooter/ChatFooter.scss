@@ -1,0 +1,35 @@
+@use '../../../../commonStyles/index' as *;
+
+.chatFooter {
+    margin-inline: 3em;
+    border: 1px solid $border-color;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1.5em;
+    // border-radius: 10px;
+    box-shadow: $box-shadow;
+    gap: .5em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 6em);
+    align-items: center;
+
+    .row{
+border-bottom: 1px solid $border-color;;
+    }
+
+    input{
+        width: 90%;
+        font-size: $font-size-medium;
+        padding: .5em;
+        padding-left: 0;
+        border: none;
+        margin-right: 1.2em;
+    }
+
+    button{
+        border: none;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,15 @@
+@use '../../commonStyles/index'  as *;
+
+
+.vertical-timeline-element-content{
+  box-shadow: $box-shadow;
+  border-radius: 10px;
+}
+
+.vertical-timeline-element-content p{
+    font-size: $font-size-small;
+}
+
+.vertical-timeline::before{
+    background-color: $test-color-1;
+}
