@@ -43,84 +43,10 @@ const CustomNode = ({ data }) => {
 
 const nodeTypes = { customNode: CustomNode };
 
-const initialNodes = [
-    { 
-        id: '1', 
-        position: { x: 150, y: 150 }, 
-        data: { background: '#6A0DAD', source: 'right', target: 'right' }, 
-        type: 'customNode'
-     }, 
-    { 
-        id: '2', 
-        position: { x: 350, y: 150 }, 
-        data: { background: '#AD60CC', source: 'right', target: 'left' }, 
-        type: 'customNode' 
-    }, 
-    { 
-        id: '3', 
-        position: { x: 550, y: 250 }, 
-        data: { background: '#E099EB', source: 'left', target: 'left' }, 
-        type: 'customNode' 
-    },
-    { 
-        id: '4', 
-        position: { x: 550, y: 150 }, 
-        data: { background: '#E099EB', source: 'left', target: 'left' }, 
-        type: 'customNode' 
-    }, 
-    { 
-        id: '5', 
-        position: { x: 550, y: 50 }, 
-        data: { background: '#E099EB', source: 'left', target: 'left' }, 
-        type: 'customNode' 
-    }, 
 
-];
-
-const initialEdges = [
-    { 
-        id: 'e1-2', 
-        source: '1', 
-        target: '2', 
-        type: 'bezier', 
-        style: { stroke: '#AD60CC', strokeWidth: 3 },
-        label: 'Edge 1-2',
-        labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
-     },
-    { 
-        id: 'e2-3', 
-        source: '2', 
-        target: '3', 
-        type: 'bezier', 
-        style: { stroke: '#E0E0E0', strokeWidth: 3 },
-        label: 'Edge 2-3',
-        labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
-     },
-    {
-        id: 'e2-4', 
-        source: '2', 
-        target: '4', 
-        type: 'bezier', 
-        animated: true, 
-        style: { stroke: '#E0E0E0', strokeWidth: 3 },
-        label: 'Edge 2-4',
-        labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
-     },
-    {
-        id: 'e2-5', 
-        source: '2', 
-        target: '5', 
-        type: 'bezier', 
-        animated: true, 
-        style: { stroke: '#E0E0E0', strokeWidth: 3 }, 
-        label: 'Edge 2-5',
-        labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
-},
-];
-
-export default function FlowDiagram() {
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+export default function FlowDiagram({data}) {
+    const [nodes, setNodes, onNodesChange] = useNodesState(data?.answer?.data?.nodes);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(data?.answer?.data?.edges);
 
     const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 

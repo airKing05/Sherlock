@@ -4,6 +4,7 @@ import SunLogoIcon from '../../assets/svg/sunLogo.svg';
 import UserIcon from '../../assets/svg/userIcon.svg';
 import ExpandMoreIcon from '../../assets/svg/doubleRightArrow.svg';
 import ExpandLessIcon from '../../assets/svg/doubleLeftArrow.svg';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,11 +13,14 @@ export default function LeftMenu() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState("Chats");
 
+    const navigate = useNavigate();
+
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
     };
 
-    const handleMenuItemClick = (item) => {
+    const handleMenuItemClick = (item, route) => {
+        navigate(route)
         setActiveMenuItem(item);
     };
 
@@ -47,15 +51,15 @@ export default function LeftMenu() {
             <div className="sidebar__menu">
                 <button
                     className={`menu-item ${activeMenuItem === "Chats" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("Chats")}
+                    onClick={() => handleMenuItemClick("Chats", '/')}
                 >
                     <span>💬</span> {!isCollapsed && 'Chats'} 
                 </button>
                 <button
-                    className={`menu-item ${activeMenuItem === "Library" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("Library")}
+                    className={`menu-item ${activeMenuItem === "History" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("History", '/history')}
                 >
-                    <span>📚</span> {!isCollapsed && 'Library'} 
+                    <span>📚</span> {!isCollapsed && 'History'} 
                 </button>
                 <button
                     className={`menu-item ${activeMenuItem === "Apps" ? "active" : ""}`}

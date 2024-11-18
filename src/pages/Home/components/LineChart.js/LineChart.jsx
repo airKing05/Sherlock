@@ -4,43 +4,10 @@ import '../Cards/Cards.scss';
 import CardLayout from '../../../../Layouts/CardLayout/CardLayout';
 
 
-const data = [
-    { date: "2024-01-01", value: 10 },
-    { date: "2024-01-02", value: 13 },
-    { date: "2024-01-03", value: 13 },
-    { date: "2024-01-04", value: 49 },
-    { date: "2024-01-05", value: 19 },
-    { date: "2024-01-06", value: 29 },
-    { date: "2024-01-07", value: 31 },
-    { date: "2024-01-08", value: 46 },
-    { date: "2024-01-09", value: 33 },
-    { date: "2024-01-10", value: 16 },
-    { date: "2024-01-11", value: 34 },
-    { date: "2024-01-12", value: 34 },
-    { date: "2024-01-13", value: 22 },
-    { date: "2024-01-14", value: 11 },
-    { date: "2024-01-15", value: 48 },
-    { date: "2024-01-16", value: 49 },
-    { date: "2024-01-17", value: 33 },
-    { date: "2024-01-18", value: 34 },
-    { date: "2024-01-19", value: 27 },
-    { date: "2024-01-20", value: 47 },
-    { date: "2024-01-21", value: 35 },
-    { date: "2024-01-22", value: 23 },
-    { date: "2024-01-23", value: 18 },
-    { date: "2024-01-24", value: 19 },
-    { date: "2024-01-25", value: 30 },
-    { date: "2024-01-26", value: 26 },
-    { date: "2024-01-27", value: 15 },
-    { date: "2024-01-28", value: 25 },
-    { date: "2024-01-29", value: 10 },
-    { date: "2024-01-30", value: 28 }
-];
 
 
-
-
-export default function LineChart() {
+export default function LineChart(props) {
+    const data = props?.data?.answer?.data;
     const d3Container = useRef(null);
 
     useEffect(() => {
