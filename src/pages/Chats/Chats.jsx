@@ -7,7 +7,7 @@ import ChatWidget from './Components/ChatWidget/ChatWidget';
 const meResp = "Open-licensed SVG Vector and Icons ?";
 const youResp = "Search, explore and edit the best-fitting free icons or vectors for your projects using a wide variety vector library. Download free SVG vectors and icons for commercial use."
 
-export default function Chats() {
+export default function Chats(props) {
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Chats() {
           <ChatWidget data={youResp}/>
         </section>
         <section>
-          <ChatFooter/>
+          <ChatFooter isRightSectionCollapsed={props.isRightSectionCollapsed}/>
         </section>
       </div>
     </>

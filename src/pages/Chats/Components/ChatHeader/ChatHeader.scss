@@ -1,24 +1,30 @@
 @use '../../../../commonStyles/index' as *;
 
-.chatNav__wrapper{
-  border-bottom: 1px solid $border-color;
+.chatNav__wrapper {
+    border-bottom: 1px solid $border-color;
 }
 
-.chatNav__row{
+.chatNav__row {
     justify-content: space-between;
     align-items: center;
     padding: .75em;
     position: relative;
 }
 
-.chatNav__colLeft{
+.chatNav__colLeft {
+    width: 50%;
+
     h5 {
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: $text-color;
         font-size: $heading-font-size-5;
     }
 }
 
-.chatNav__toggler{
+.chatNav__toggler {
     display: none;
     border: none;
     background-color: transparent;
@@ -31,30 +37,30 @@
     }
 }
 
-.chatNav__list{
+.chatNav__list {
     list-style: none;
     display: flex;
     gap: .5em;
 
-    
+
     @media only screen and (max-width: 600px) {
         // display: none;
         position: fixed;
         inset: 1.7% 10% 0 70%;
         height: fit-content;
         flex-direction: column;
-        background-color:  rgba(162, 161, 161, 0.4); 
+        background-color: rgba(162, 161, 161, 0.4);
         align-items: center;
         padding: min(6vh, 3.2rem) .1em;
         z-index: 99;
         transform: translateX(160%);
         border-radius: 10px;
-    //    backdrop-filter: blur(10px);
+        //    backdrop-filter: blur(10px);
     }
 }
 
-.chatNav__list__visible{
-   transform: translateX(0%) !important;
+.chatNav__list__visible {
+    transform: translateX(0%) !important;
 }
 
 //  @supports(backdrop-filter: blur(1rem)) {
@@ -68,7 +74,7 @@
 .chatNav__list>li {
     display: flex;
 
-    @media only screen and (max-width: 600px){
+    @media only screen and (max-width: 600px) {
         display: block;
     }
 }
@@ -80,7 +86,7 @@
     margin-right: 20px;
 
     @media only screen and (max-width: 600px) {
-           display: none;
-    
-        }
+        display: none;
+
+    }
 }

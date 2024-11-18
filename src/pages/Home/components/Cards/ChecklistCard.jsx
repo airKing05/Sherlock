@@ -1,34 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ArrowRightIcon from "../../../../assets/svg/arrowRightIcon.svg";
 import Chip from '../Chip/Chip';
 import CardLayout from '../../../../Layouts/CardLayout/CardLayout';
+import { serviceStatus } from '../../../../apis/apis';
+import useApiRequest from '../../../../Hooks/useApiRequest';
 
-const cardListData = [
-    {
-        title: 'APPLICATION HEALTH',
-        status: 'ISSUE FOUNDED',
-        summary: 'Significant slowdown during pick hours.'
-    },
-    {
-        title: 'DOWNSTREAM SERVICE',
-        status: 'ALL GOOD',
-        summary: 'All service performing with in normal parameters.'
-    },
-    {
-        title: 'INFRASTRUCTURE',
-        status: 'ISSUE FOUNDED',
-        summary: 'CPU saturation due to high traffic volume.'
-    },
-    {
-        title: 'CONFIGURATION',
-        status: 'ISSUE FOUNDED',
-        summary: 'Suboptimal load balancer setting uneven service load.'
-    }
-]
+const cardListData = serviceStatus();
 
 export default function ChecklistCard() {
+    const [respData, error, loading] = useApiRequest('https://jsonplaceholder.typicode.com/todos');
+
+
+
+    console.log(respData, loading, error)
+    
     const clickHandler = (action) => {
-        console.log(action)
+        // console.log(action)
     }
     return (
         <CardLayout title="What we've checked">
