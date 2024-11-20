@@ -6,7 +6,7 @@ import CrossIcon from '../../assets/svg/crossIcon.svg';
 import LeftMenu from '../../Components/LeftMenu/LeftMenu';
 
 
-export default function PageLayout({ children }) {
+export default function PageLayout({ children, route }) {
     const [isRightSectionCollapsed, setIsRightSectionCollapsed] = useState(true);
     return (
         <div className='pageLayout__container'>
@@ -17,27 +17,30 @@ export default function PageLayout({ children }) {
                 <section className='pageLayout__container__centerSection'>
                     {children}
                 </section>
-                <section className={`pageLayout__container__rightSection ${isRightSectionCollapsed ? 'collapsedRight' : ''}`}>
                 {
-                        isRightSectionCollapsed ? <div className='pageLayout__container__rightSection__renderIcon'>
-                        <span
-                            onClick={() => setIsRightSectionCollapsed(false)}
-                        >
-                            <img src={ChatIcon} alt='chat-icon' />
-                        </span>
-                        </div> : 
-                            <div className='pageLayout__container__rightSection__renderComponent'>
-                            <span
-                                onClick={() => setIsRightSectionCollapsed(true)}
-                            >
-                                <img src={CrossIcon} alt='cross-icon' />
-                            </span>
-                                <Chats isRightSectionCollapsed={isRightSectionCollapsed}/>
-                        </div>
+                    route === 'chat' && <section className={`pageLayout__container__rightSection ${isRightSectionCollapsed ? 'collapsedRight' : ''}`}>
+                        {
+                            isRightSectionCollapsed ? <div className='pageLayout__container__rightSection__renderIcon'>
+                                <span
+                                    onClick={() => setIsRightSectionCollapsed(false)}
+                                >
+                                    <img src={ChatIcon} alt='chat-icon' />
+                                </span>
+                            </div> :
+                                <div className='pageLayout__container__rightSection__renderComponent'>
+                                    <span
+                                        onClick={() => setIsRightSectionCollapsed(true)}
+                                    >
+                                        <img src={CrossIcon} alt='cross-icon' />
+                                    </span>
+                                    <Chats isRightSectionCollapsed={isRightSectionCollapsed} />
+                                </div>
+                        }
+
+
+                    </section>
                 }
-                   
-                  
-                </section>
+              
             </div>
         </div>
     )

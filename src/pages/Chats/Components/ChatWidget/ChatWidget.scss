@@ -15,12 +15,16 @@
 }
 
 .chatWidget__profile {}
-
+.chatWidget__content__wrapper{
+    width: 100%;
+}
 .chatWidget__main {
     font-size: $font-size-small;
 
-    p {
+    .chatWidget__content {
         color: $test-color-1;
+        overflow-x: scroll;
+        max-width: 300px;
     }
 }
 
@@ -29,8 +33,8 @@
     gap: 1em;
     align-items: center;
 
-    h5 {
-        font-size: $heading-font-size-5;
+    h6 {
+        font-size: $heading-font-size-6;
         text-transform: capitalize;
     }
 

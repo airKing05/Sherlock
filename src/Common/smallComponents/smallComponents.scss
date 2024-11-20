@@ -1,0 +1,10 @@
+@use '../../commonStyles/index' as *;
+
+.common__wrapper {
+    padding-inline: 1.5em;
+}
+
+.html__wrapper{
+    background-color: $primary-color-light-90;
+    // padding: .75em;
+}

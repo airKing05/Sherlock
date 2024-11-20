@@ -14,13 +14,13 @@
 .chatNav__colLeft {
     width: 50%;
 
-    h5 {
+    h6 {
         white-space: nowrap;
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         color: $text-color;
-        font-size: $heading-font-size-5;
+        font-size: $heading-font-size-6;
     }
 }
 

@@ -4,16 +4,23 @@ import SunLogoIcon from '../../assets/svg/sunLogo.svg';
 import UserIcon from '../../assets/svg/userIcon.svg';
 import ExpandMoreIcon from '../../assets/svg/doubleRightArrow.svg';
 import ExpandLessIcon from '../../assets/svg/doubleLeftArrow.svg';
-import { useNavigate } from 'react-router-dom';
+import ChatIcon from '../../assets/svg/chatIcon.svg';
+import HistoryIcon from '../../assets/svg/historyIcon.svg';
+import LoginIcon from '../../assets/svg/loginIcon.svg';
+
+
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 
 export default function LeftMenu() {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const [activeMenuItem, setActiveMenuItem] = useState("Chats");
-
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [activeMenuItem, setActiveMenuItem] = useState(location.pathname.split('/')[1] !== "" ? location.pathname.split('/')[1] : 'chat' );
+
 
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
@@ -24,6 +31,8 @@ export default function LeftMenu() {
         setActiveMenuItem(item);
     };
 
+    const userData = JSON.parse(localStorage.getItem("user")) || {};
+    console.log("userData", userData)
     return (
         <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
 
@@ -43,30 +52,35 @@ export default function LeftMenu() {
             }
            
             <div className="sidebar__user">
-                <img src={UserIcon} alt="User Avatar" className="user-avatar" />
-                {!isCollapsed && <h3>Alex Ferguson</h3>}
+                <img src={userData?.picture ? userData.picture : UserIcon} alt="User Avatar" className="user-avatar" />
+                {!isCollapsed && <h3>{userData?.name}</h3>}
             </div>
 
 
             <div className="sidebar__menu">
                 <button
-                    className={`menu-item ${activeMenuItem === "Chats" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("Chats", '/')}
+                    className={`menu-item ${activeMenuItem === "chat" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("chat", '/')}
                 >
-                    <span>💬</span> {!isCollapsed && 'Chats'} 
+                    <span>
+                        <img src={ChatIcon} alt='icon' />
+                    </span> {!isCollapsed && 'Chats'} 
                 </button>
                 <button
-                    className={`menu-item ${activeMenuItem === "History" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("History", '/history')}
+                    className={`menu-item ${activeMenuItem === "history" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("history", '/history')}
                 >
-                    <span>📚</span> {!isCollapsed && 'History'} 
+                    <span>
+                        <img src={HistoryIcon} alt='icon'/>
+                    </span> {!isCollapsed && 'History'} 
                 </button>
                 <button
-                    className={`menu-item ${activeMenuItem === "Apps" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("Apps")}
+                    className={`menu-item ${activeMenuItem === "sign-in" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("sign-in", '/sign-in')}
                 >
-                    <span>⚙️</span> {!isCollapsed && 'Apps'} 
-                    {/* <span className="badge">3</span> */}
+                    <span>
+                        <img src={LoginIcon} alt='icon' />
+                    </span> {!isCollapsed && 'Sign-in'}
                 </button>
             </div>
 

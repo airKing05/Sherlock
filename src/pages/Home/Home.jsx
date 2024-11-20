@@ -1,34 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import ChecklistCard from './components/Cards/ChecklistCard'
-import BasicCard from './components/Cards/BasicCard'
-import CodeCard from './components/Cards/CodeCard'
 import FlowChart from './components/FlowChart/FlowChart'
-import BasicCardWithIcon from './components/Cards/BasicCardWithIcon'
-import LineChart from './components/LineChart.js/LineChart'
+// import BasicCardWithIcon from './components/Cards/BasicCardWithIcon'
+import LineChart from '../../Components/Charts/LineChart.js/LineChart'
 import CustomTable from '../../Components/CustomTable/CustomTable'
 // import HorizontalTimeLine from '../../Components/HorizontalTimeLine/HorizontalTimeLine'
 import HorizontalTimeline2 from '../../Components/HorizontalTimeLine/HorizontalTimeline2'
 import usePostApiRequest from '../../Hooks/usePostApiRequest'
 import serviceApis from '../../apis/apis';
+import CardLayout from '../../Layouts/CardLayout/CardLayout'
+import ChecklistCard from '../../Components/Cards/ChecklistCard'
+import BasicCard from '../../Components/Cards/BasicCard'
+import CodeCard from '../../Components/Cards/CodeCard'
 
 
 const HomeComponentRenderer = (props) => {
     const { data } = props;
     switch (data?.answer_type) {
         case 'checklist':
-            return <ChecklistCard data={data} />
+            return <CardLayout title={data?.answer.title}>
+                <ChecklistCard data={data.answer.data} />
+            </CardLayout>
         case 'summary':
-            return <BasicCard data={data} />
+            return <CardLayout title={data?.answer.title}>
+                <BasicCard data={data.answer.data} />
+            </CardLayout>
         case 'code':
-            return <CodeCard data={data} />
+            return <CardLayout title={data?.answer.title}>
+                <CodeCard data={data.answer.data} />
+            </CardLayout> 
         case 'graph':
-            return <LineChart data={data} />
+            return <CardLayout title={data?.answer.title}>
+                <LineChart data={data.answer.data} />
+            </CardLayout> 
         case 'timeline':
             return <HorizontalTimeline2 data={data} />
         case 'table':
-            return <CustomTable data={data} />
+            return <CustomTable data={data.answer.data} />
         case 'network':
-            return <FlowChart data={data} />
+            return <CardLayout title={data?.answer.title}>
+                <FlowChart data={data.answer.data} />
+            </CardLayout>
         default:
             break;
     }
@@ -46,7 +57,7 @@ const HomeComponentRenderer = (props) => {
     //             <FlowChart />
     //             <br />
     //             <br />
-    //             <BasicCardWithIcon />
+    //    <BasicCardWithIcon />
     //             <br />
     //             <br />
     //             <LineChart />

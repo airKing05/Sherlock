@@ -1,0 +1,81 @@
+@use '../../commonStyles/index' as *;
+
+.signin__wrapper{
+    // background-color: $background-color-second;
+}
+
+.signin__container{
+    background-color: $white;
+    padding: .75em;
+    box-shadow: $box-shadow;
+    border-radius: 1.5em;
+    height: calc(100vh - 200px);
+    margin:5em 2em;
+    position: relative;
+    
+}
+
+.row{
+    height: -webkit-fill-available;
+}
+
+
+
+.signin__content {
+    margin-top: 20%;
+    // padding: 2em;
+    color: $text-color;
+    // border: 1px solid blue;
+
+    .signin__content__box{
+        // border: 1px solid yellow;
+        max-width: 250px;
+        margin-inline: auto;
+    }
+ 
+    h2{
+        font-size: $heading-font-size-2;
+        // margin-bottom: .2em;
+    }
+
+    p{
+        font-size: $font-size-small;
+        margin-bottom: 2em;
+    }
+    .signin__button {
+        display: flex;
+        align-items: center;
+        padding: .5em .8em;
+        gap: 5px;
+        border-radius: .5em;
+        border: 1px solid $border-color;
+        background-color: $white;
+    }
+}
+
+.signin__img__container{
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5em;
+    background: url('https://img.freepik.com/free-vector/gradient-dynamic-lines-background_23-2149020531.jpg?t=st=1732116082~exp=1732119682~hmac=fc00ecf5975135e5e959c00abd310eb428ce7d708360e461395e0453117db110&w=826');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin__footer {
+    position: absolute;
+    left: 7%;
+    bottom: 2em;
+}
+
+
+.Signin__msg{
+    background-color: #00ffff63;
+    padding: .75em;
+    border-radius: .5em;
+    
+}

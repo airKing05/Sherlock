@@ -1,13 +1,42 @@
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import '../Cards/Cards.scss';
-import CardLayout from '../../../../Layouts/CardLayout/CardLayout';
 
 
+const customData = [
+    { date: "2024-01-01", value: 10 },
+    { date: "2024-01-02", value: 13 },
+    { date: "2024-01-03", value: 13 },
+    { date: "2024-01-04", value: 49 },
+    { date: "2024-01-05", value: 19 },
+    { date: "2024-01-06", value: 29 },
+    { date: "2024-01-07", value: 31 },
+    { date: "2024-01-08", value: 46 },
+    { date: "2024-01-09", value: 33 },
+    { date: "2024-01-10", value: 16 },
+    { date: "2024-01-11", value: 34 },
+    { date: "2024-01-12", value: 34 },
+    { date: "2024-01-13", value: 22 },
+    { date: "2024-01-14", value: 11 },
+    { date: "2024-01-15", value: 48 },
+    { date: "2024-01-16", value: 49 },
+    { date: "2024-01-17", value: 33 },
+    { date: "2024-01-18", value: 34 },
+    { date: "2024-01-19", value: 27 },
+    { date: "2024-01-20", value: 47 },
+    { date: "2024-01-21", value: 35 },
+    { date: "2024-01-22", value: 23 },
+    { date: "2024-01-23", value: 18 },
+    { date: "2024-01-24", value: 19 },
+    { date: "2024-01-25", value: 30 },
+    { date: "2024-01-26", value: 26 },
+    { date: "2024-01-27", value: 15 },
+    { date: "2024-01-28", value: 25 },
+    { date: "2024-01-29", value: 10 },
+    { date: "2024-01-30", value: 28 }
+]
 
 
-export default function LineChart(props) {
-    const data = props?.data?.answer?.data;
+export default function LineChart({ data = customData, widgetType = "" }) {
     const d3Container = useRef(null);
 
     useEffect(() => {
@@ -17,9 +46,9 @@ export default function LineChart(props) {
             d3.select(d3Container.current).select("svg").remove();
 
             // set the dimensions and margins of the graph
-            const margin = { top: 50, right: 30, bottom: 35, left: 100 },
-                width = 740 - margin.left - margin.right,
-                height = 400 - margin.top - margin.bottom;
+            const margin = { top: 50, right: 30, bottom: 50, left: 50 },
+                width = (widgetType === 'chat' ? 440 :  740) - margin.left - margin.right,
+                height = (widgetType === 'chat' ? 300 : 400) - margin.top - margin.bottom;
 
             // append the svg object to the body of the page
             const svg = d3.select(d3Container.current)
@@ -27,7 +56,7 @@ export default function LineChart(props) {
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g')
-                .attr('transform', `translate(${margin.left},${margin.top})`);
+                .attr('transform', `translate(${ widgetType === 'chat' ? 20 : margin.left},${margin.top})`);
 
             // //Read the data
             // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
@@ -148,10 +177,18 @@ export default function LineChart(props) {
             const x = d3.scaleTime()
                 .domain(d3.extent(parsedData, d => d.date))
                 .range([0, width]);
-            const xAxis = svg.append("g")
-                .attr("transform", `translate(0,${height})`)
+        
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x))
-              
+                //select all text labels in the axis, then position + rotate
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-1em")
+                .attr("dy", "-0.5em")
+                .attr("transform", "rotate(-60)");
+
 
             // Add Y axis
             const y = d3.scaleLinear()
@@ -161,6 +198,9 @@ export default function LineChart(props) {
                 .call(d3.axisLeft(y))
                 // .selectAll("text")
                 // .style("fill", "#4682b4"); // Customize color if desired
+
+
+          
 
             // Add line
             svg.append("path")
@@ -219,10 +259,7 @@ export default function LineChart(props) {
     }, [d3Container.current]); // Runs only once, after initial render
 
   return (
-    <CardLayout title="Line chart">
       <div ref={d3Container} />
-    </CardLayout>
-    
   )
 }
 

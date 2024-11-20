@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
 import './HorizontalTimeLine.scss'
 import Portal from '../../Layouts/Portal/Portal';
-import DetailsCard from './DetailsCard/DetailsCard';
+import DetailsCard from './DetailsPopup/DetailsPopup';
+import ReactIcon from '../../assets/icons/react.svg';
+import ScssIcon from '../../assets/icons/scss.svg';
+import NodeIcon from '../../assets/icons/node.svg';
+import ExpressIcon from '../../assets/icons/express.svg';
+import GitIcon from '../../assets/icons/git.svg';
+import KubernetesIcon from '../../assets/icons/kubernetes.svg';
+import DatabaseIcon from '../../assets/icons/database.svg';
+
+
+const ImageIcon = ({icon}) => {
+    return <img width={25} height={25} src={icon} alt='icon' />;
+}
+
 
 const Icon = ({ type }) => {
     switch (type) {
-        case 'location':
-            return <span className="icon">📍</span>;
-        case 'photo':
-            return <span className="icon">📷</span>;
-        case 'checkin':
-            return <span className="icon">🏨</span>;
-        case 'warning':
-            return <span className="icon">📅</span>;
-        case 'clock':
-            return <span className="icon">⏰</span>;
-        case 'speed':
-            return <span className="icon">🚗</span>;
+        case 'react':
+            return <ImageIcon icon={ReactIcon}/>;
+        case 'scss':
+            return <ImageIcon icon={ScssIcon} />; 
+        case 'node':
+            return <ImageIcon icon={NodeIcon} />;
+        case 'express':
+            return <ImageIcon icon={ExpressIcon} />;
+        case 'database':
+            return <ImageIcon icon={DatabaseIcon} />; 
+        case 'kubernetes':
+            return <ImageIcon icon={KubernetesIcon} />; 
+        case 'git':
+            return <ImageIcon icon={GitIcon} />; 
         default:
             return null;
     }
@@ -46,7 +61,9 @@ export default function HorizontalTimeline2({data}) {
 
     const handleMoreInfo = (data) => {
         handleOpenPopup();
-        setAdditionalInfo(data)
+        const icon = <Icon type={data.iconType}/>
+        console.log("icon", icon)
+        setAdditionalInfo({ ...data.details, icon})
     }
 
   
@@ -79,13 +96,14 @@ export default function HorizontalTimeline2({data}) {
                         <div 
                         className="timeline__marker"
                         onClick={() => {
-                            event.moreInfo && handleMoreInfo(event.moreInfo)
+                            event.details && handleMoreInfo(event)
                         }}
                         >
                             <div className="timeline__time">
-                                <span className="timeline__icon">
-                                    <Icon type={event.iconType} />
-                                </span>
+                                {/* <span className="timeline__icon">
+                                    
+                                </span> */}
+                                <Icon type={event.iconType} />
                                 <span>
                                     {event.time}
                                 </span>

@@ -10,23 +10,23 @@ import { ME } from '../../../../Constants/Text';
 
 
 export default function ChatWidget(props) {
-    const { chatFor, data } = props;
+    const { chatFor, data, children } = props;
     return (
         <div className={chatFor === ME ? 'chatWidget__wrapper--me row' : 'chatWidget__wrapper row'}>
             {/* <div className='row'> */}
             <div className='chatWidget__profile'>
                 <img className='iconContainer' src={UserIcon} alt='UserIcon' />
             </div>
-            <div className='chatWidget__main'>
+            <div className='chatWidget__content__wrapper'>
                 <header className='chatWidget__header'>
-                    <h5>user name</h5>
+                    <h6>user name</h6>
                     <div className='chatWidget__verticalLine'></div>
                     <span>12:45 PM</span>
                 </header>
                 <main className='chatWidget__main'>
-                    <p>
-                       {data}
-                    </p>
+                    <div className='chatWidget__content'>
+                        {children ? children : data} 
+                    </div>
                 </main>
                 {
                     chatFor !== ME ? <footer className='chatWidget__footer row'>

@@ -13,30 +13,64 @@ export const serviceStatus = () => {
                     {
                         title: 'APPLICATION HEALTH',
                         status: 'ISSUE FOUNDED',
+                        color: 'red',
                         summary: 'Significant slowdown during pick hours.',
-                        details: 'The Unicode and HTML Entities But to use this Unicode correctly, remove the U+ and replace it with ampersand (&), pound sign (#), and x. Then type the 2022 number in, and then add a semi-colon. So, it becomes •.'
+                        details: {
+                            widgetType : 'LIST',
+                            content: [
+                                'The Unicode and HTML Entities But to use',
+                                'this Unicode correctly,',
+                                'remove the U+ and replace it with ampersand',
+                                'and x. Then type the 2022 number in, and then add a semi-colon'
+                            ]
+                        }
                     },
                     {
                         title: 'DOWNSTREAM SERVICE',
                         status: 'ALL GOOD',
+                        color: 'green',
                         summary: 'All service performing with in normal parameters.',
-                        details: 'The Unicode and HTML Entities But to use this Unicode correctly, remove the U+ and replace it with ampersand (&), pound sign (#), and x. Then type the 2022 number in, and then add a semi-colon. So, it becomes •.'
+                        details: {
+                            widgetType: 'TEXT',
+                            content: 'The Unicode and HTML Entities But to use this Unicode correctly, remove the U+ and replace it with ampersand (&), pound sign (#), and x. Then type the 2022 number in, and then add a semi-colon. So, it becomes •.'
+                        }
 
                     },
                     {
                         title: 'INFRASTRUCTURE',
                         status: 'ISSUE FOUNDED',
+                        color: 'red',
                         summary: 'CPU saturation due to high traffic volume.',
-                        details: 'The Unicode and HTML Entities But to use this Unicode correctly, remove the U+ and replace it with ampersand (&), pound sign (#), and x. Then type the 2022 number in, and then add a semi-colon. So, it becomes •.'
-
+                        details: {
+                            widgetType: 'CODE',
+                            content: `for(let i = 0; i<=5; i++){
+                                      console.log(i)
+                                     }`
+                        }
                     },
                     {
                         title: 'CONFIGURATION',
                         status: 'ISSUE FOUNDED',
+                        color: 'red',
                         summary: 'Suboptimal load balancer setting uneven service load.',
-                        details: 'The Unicode and HTML Entities But to use this Unicode correctly, remove the U+ and replace it with ampersand (&), pound sign (#), and x. Then type the 2022 number in, and then add a semi-colon. So, it becomes •.'
-
-                    }
+                        details: {
+                            widgetType: 'HTML',
+                            content: `<section>
+  <h2>Section Title</h2>
+  <p>Section content goes here...</p>
+</section>`
+                        }
+                    },
+                    {
+                        title: 'INFRASTRUCTURE',
+                        status: 'ISSUE FOUNDED',
+                        color: 'red',
+                        summary: 'CPU saturation due to high traffic volume.',
+                        details: {
+                            widgetType: 'IMAGE',
+                            content: `https://cdn.pixabay.com/photo/2014/10/05/19/02/binary-code-475664_1280.jpg`
+                        }
+                    },
                 ]
             }
         }
@@ -139,31 +173,36 @@ export const serviceTimeline = () => {
                     {
                         time: "4 pm",
                         description: "Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin",
-                        iconType: "location",
-                        highlight: false,
+                        iconType: "react",
+                        // highlight: false,
                         position: "top",
                         eventTime: '4:30',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            widgetType: 'HTML',
+                            title: 'React development',
+                            content: `<section>
+  <h4>Create react portal</h4>
+  <p>To see the full details about time event on any other continent</p>
+</section>`
                         }
                     },
                     {
                         time: "6:05 pm",
                         description: "Smyth and Porton take cell phone picture at Pickering Dairy Queen, 200 miles from Graslin",
-                        iconType: "photo",
+                        iconType: "scss",
                         highlight: false,
                         position: "top",
                         eventTime: '6:15',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            title: 'Scss library for css',
+                            widgetType: 'TEXT',
+                            content: 'Before you can use Sass, you need to set it up on your project. If you want to just browse here, go ahead, but we recommend you go install Sass first'
                         }
                     },
                     {
                         time: "7:29 pm",
                         description: "Emanuel Spizer checks into Desert Motel in Graslin",
-                        iconType: "checkin",
+                        iconType: "node",
                         highlight: true,
                         position: "bottom",
                         eventTime: '8:15',
@@ -172,49 +211,60 @@ export const serviceTimeline = () => {
                     {
                         time: "8:22 pm",
                         description: "Guest in next door room reports shouting",
-                        iconType: "warning",
+                        iconType: "express",
                         highlight: false,
                         position: "bottom",
                         eventTime: '8:30',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            title: 'Express setup to chats',
+                            widgetType: 'CODE',
+                            content: `for(let i = 0; i<=5; i++){
+                                      console.log(i)
+                                     }`
                         }
                     },
                     {
                         time: "9:30 pm - 10:30 pm",
                         description: "Time of assault",
-                        iconType: "clock",
+                        iconType: "database",
                         highlight: true,
                         position: "top",
                         eventTime: '10:00',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            title: 'MongoDB Atlas connection',
+                            widgetType: 'TEXT',
+                            content: 'Up to 32% higher throughput, improved horizontal scaling, expanded queryable encryption capabilities, and more.'
                         }
                     },
                     {
                         time: "12:20 am",
                         description: "Smyth receives a speeding ticket 20 miles south of Pickering",
-                        iconType: "speed",
+                        iconType: "kubernetes",
                         highlight: false,
                         position: "top",
                         eventTime: '12:30',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            title: 'Kubernetes used instead of Docker',
+                            widgetType: 'IMAGE',
+                            content: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0HoWq-QIBCxGG7fEPcjM5dPu9iIfQiCr2Ug&s`
                         }
                     },
                     {
                         time: "01:30 am - 4:00 am",
                         description: "Motel guest in neighboring room hears no disturbances the rest of the night",
-                        iconType: "clock",
+                        iconType: "git",
                         highlight: false,
                         position: "bottom",
                         eventTime: '02:07',
-                        moreInfo: {
-                            title: 'more details',
-                            details: 'Tommy Smyth seen at Willowpoint Public Library, 175 miles from Graslin'
+                        details: {
+                            title: 'Git to GitHub',
+                            widgetType: 'LIST',
+                            content: [
+                                'store, share, and work together with others to write code',
+                                'open issues, comment on pull requests, and manage projects',
+                                'different people and teams use GitHub for different projects',
+                                "Github is an essential part of any aspiring web developer's journey to employment"
+                            ]
                         }
                     },
                 ]
@@ -307,6 +357,7 @@ export const serviceNetwork = () => {
         data: {
             answer_type: "network",
             answer: {
+                title: 'Network Flow',
                 data: {
                     edges: [
                         {
@@ -315,7 +366,7 @@ export const serviceNetwork = () => {
                             target: '2',
                             type: 'bezier',
                             style: { stroke: '#AD60CC', strokeWidth: 3 },
-                            label: 'Edge 1-2',
+                            label: 'DynamoDB - Table',
                             labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
                         },
                         {
@@ -324,7 +375,7 @@ export const serviceNetwork = () => {
                             target: '3',
                             type: 'bezier',
                             style: { stroke: '#E0E0E0', strokeWidth: 3 },
-                            label: 'Edge 2-3',
+                            label: 'Table - Cluster',
                             labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
                         },
                         {
@@ -334,7 +385,7 @@ export const serviceNetwork = () => {
                             type: 'bezier',
                             animated: true,
                             style: { stroke: '#E0E0E0', strokeWidth: 3 },
-                            label: 'Edge 2-4',
+                            label: 'Table - Rds',
                             labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
                         },
                         {
@@ -344,7 +395,7 @@ export const serviceNetwork = () => {
                             type: 'bezier',
                             animated: true,
                             style: { stroke: '#E0E0E0', strokeWidth: 3 },
-                            label: 'Edge 2-5',
+                            label: 'Table - Aurora',
                             labelStyle: { fill: '#E099EB', fontWeight: 'bold', fontSize: '12px' },
                         },
                     ],
@@ -352,32 +403,32 @@ export const serviceNetwork = () => {
                         {
                             id: '1',
                             position: { x: 150, y: 150 },
-                            data: { background: '#6A0DAD', source: 'right', target: 'right' },
-                            type: 'customNode'
+                            data: { background: '#6A0DAD', source: 'right', target: 'right', iconType: 'dynamoDb', },
+                            type: 'customNode',
                         },
                         {
                             id: '2',
                             position: { x: 350, y: 150 },
-                            data: { background: '#AD60CC', source: 'right', target: 'left' },
-                            type: 'customNode'
+                            data: { background: '#AD60CC', source: 'right', target: 'left', iconType: 'dynamoDb-table', },
+                            type: 'customNode',
                         },
                         {
                             id: '3',
                             position: { x: 550, y: 250 },
-                            data: { background: '#E099EB', source: 'left', target: 'left' },
-                            type: 'customNode'
+                            data: { background: '#E099EB', source: 'left', target: 'left', iconType: 'aurora', },
+                            type: 'customNode',
                         },
                         {
                             id: '4',
                             position: { x: 550, y: 150 },
-                            data: { background: '#E099EB', source: 'left', target: 'left' },
-                            type: 'customNode'
+                            data: { background: '#E099EB', source: 'left', target: 'left', iconType: 'rds', },
+                            type: 'customNode',
                         },
                         {
                             id: '5',
                             position: { x: 550, y: 50 },
-                            data: { background: '#E099EB', source: 'left', target: 'left' },
-                            type: 'customNode'
+                            data: { background: '#E099EB', source: 'left', target: 'left', iconType: 'cluster', },
+                            type: 'customNode',
                         },
 
                     ]

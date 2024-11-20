@@ -31,6 +31,17 @@
     border-bottom: 1px solid $border-color;
 }
 
+.styled-table th {
+    cursor: pointer;
+    position: relative;
+}
+
+.styled-table th span {
+    margin-left: 5px;
+    font-size: 0.8em;
+    color: #666;
+}
+
 .styled-table tbody tr:nth-of-type(even) {
     background-color: $primary-color-light-90;
 }
@@ -42,4 +53,38 @@
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #4CAF50;
+}
+
+
+/* Menu Button */
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+/* Menu Popup */
+.menu-popup {
+    position: absolute;
+    background-color: $white;
+    border: 1px solid $border-color;
+    box-shadow: $box-shadow;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 10;
+    min-width: 90px;
+}
+
+.menu-popup div {
+    padding: 8px;
+    cursor: pointer;
+    font-size: $font-size-xs;
+    color: $text-color;
+}
+
+.menu-popup div:hover {
+    background-color: $primary-color-light-90;
+    border-radius: 4px;
 }

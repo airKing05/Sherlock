@@ -15,6 +15,9 @@
 }
 
 .chatBody{
-    margin-inline: 3em;
+    margin-inline: .75em;
     margin-top: 2em;
+    height: 70vh;
+    overflow-y: scroll;
+    // border: 1px solid blue;
 }
