@@ -62,7 +62,6 @@ export default function HorizontalTimeline2({data}) {
     const handleMoreInfo = (data) => {
         handleOpenPopup();
         const icon = <Icon type={data.iconType}/>
-        console.log("icon", icon)
         setAdditionalInfo({ ...data.details, icon})
     }
 

@@ -444,6 +444,8 @@ export const serviceNetwork = () => {
 
 
 const URL = 'https://jsonplaceholder.typicode.com/todos';
+const getURL = 'http://jsonblob.com/1309018725575483392';
+const expressServerURL = 'http://localhost:3001/';
 //endpoints.SERVICE
 const serviceApis = {
     getService: () => axiosService.get(endpoints.SERVICE),

@@ -4,9 +4,13 @@ import PlusIcon from '../../assets/svg/plusIcon.svg';
 
 
 export default function Button(props) {
-    const { children } = props;
+    const { children, onClick, classes } = props;
+
     return (
-        <> <button className='button'>
+        <> <button
+            className={`button ${classes} `}
+            onClick={onClick}
+        >
             <div className='button__body'>
                 {
                     children

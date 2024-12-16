@@ -9,9 +9,11 @@ import RdsIcon from '../../../../assets/icons/aws/rds.svg';
 const ImageIcon = ({ icon }) => {
     return <img
         style={{
-            marginTop: '2px',
-            borderRadius: '50%'
+            // marginTop: '4px',
+            borderRadius: '50%',
         }}
+        width={50}
+        height={50}
         src={icon}
         alt='icon'
     />;
@@ -19,7 +21,6 @@ const ImageIcon = ({ icon }) => {
 
 
 const IconRenderer = ({ type }) => {
-    console.log("type", type)
     switch (type) {
         case 'rds':
             return <ImageIcon icon={RdsIcon} />;

@@ -18,9 +18,8 @@ import IconRenderer from './IconRenderer';
 
 const CustomNode = (props) => {
     const { data } = props;
-    console.log("props", props)
     return (
-        <div style={{ width: '50px', height: '50px', position: 'relative', borderRadius: '100%', border: `5px solid ${data.background}`}}>
+        <div style={{ width: '50px', height: '50px', position: 'relative', borderRadius: '50%', border: `1px solid ${data.background}`}}>
             {/* Handle on the left */}
             <Handle type="source" position={data.source} style={{ background: '#555' }} />
             <div style={{

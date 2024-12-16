@@ -14,7 +14,6 @@ export default function Signin({ setAuth }) {
 
     const navigate = useNavigate();
 
-    console.log(user, profile)
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),
         onError: (error) => console.log('Login Failed:', error)
@@ -38,6 +37,13 @@ export default function Signin({ setAuth }) {
                 .catch((err) => console.log(err));
         }
     }, [user]);
+
+    useEffect(() => {
+        if (userData?.name){
+            navigate("/");
+        }
+    }, [userData])
+    
 
     // log out function to log the user out of google and set the profile array to null
     const logOut = () => {

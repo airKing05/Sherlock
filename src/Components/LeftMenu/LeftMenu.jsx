@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./LeftMenu.scss";
 import SunLogoIcon from '../../assets/svg/sunLogo.svg';
 import UserIcon from '../../assets/svg/userIcon.svg';
@@ -7,20 +7,19 @@ import ExpandLessIcon from '../../assets/svg/doubleLeftArrow.svg';
 import ChatIcon from '../../assets/svg/chatIcon.svg';
 import HistoryIcon from '../../assets/svg/historyIcon.svg';
 import LoginIcon from '../../assets/svg/loginIcon.svg';
-
+import LogoutIcon from '../../assets/svg/logoutIcon.svg';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 
-export default function LeftMenu() {
+export default function LeftMenu({ isRightSectionCollapsed }) {
     const navigate = useNavigate();
     const location = useLocation();
 
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState(location.pathname.split('/')[1] !== "" ? location.pathname.split('/')[1] : 'chat' );
-
 
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
@@ -31,8 +30,20 @@ export default function LeftMenu() {
         setActiveMenuItem(item);
     };
 
+    useEffect(() => {
+        if (!isRightSectionCollapsed){
+            setIsCollapsed(true)
+        }
+    }, [isRightSectionCollapsed])
+    
+
     const userData = JSON.parse(localStorage.getItem("user")) || {};
-    console.log("userData", userData)
+
+    const handleSignout = () => {
+        localStorage.removeItem("user");
+        handleMenuItemClick("signout", '/sign-in')
+    }
+   
     return (
         <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
 
@@ -76,11 +87,11 @@ export default function LeftMenu() {
                 </button>
                 <button
                     className={`menu-item ${activeMenuItem === "sign-in" ? "active" : ""}`}
-                    onClick={() => handleMenuItemClick("sign-in", '/sign-in')}
+                    onClick={() => handleSignout()}
                 >
                     <span>
-                        <img src={LoginIcon} alt='icon' />
-                    </span> {!isCollapsed && 'Sign-in'}
+                        <img src={LogoutIcon} alt='icon' />
+                    </span> {!isCollapsed && 'Sign-out'}
                 </button>
             </div>
 

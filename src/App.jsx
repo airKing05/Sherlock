@@ -42,9 +42,7 @@ function App() {
           <Route
             path="/sign-in"
             element={
-              <PageLayout route="sign-in">
-                <Signin setAuth={setIsAuthenticated} />
-              </PageLayout>
+              <Signin setAuth={setIsAuthenticated} />
             }
           />
           {/* <Route path="/" element={<Home />} exact></Route> */}

@@ -2,10 +2,27 @@
 
 .button {
     padding: .3em 1em;
-    background: $primary-color;
-    color: $white;
+    color: $text-color;
     border-radius: 5px;
     border: none;
+    border: 1px solid $black;
+    background-color: transparent;
+
+    &:hover{
+       background-color: $black;
+       color: $white;
+    }
+}
+
+.button-primary {
+    background: $primary-color;
+    color: $white;
+    border: none;
+
+    &:hover {
+        background-color: $error-color;
+        color: $white;
+    }
 }
 
 .button__body {

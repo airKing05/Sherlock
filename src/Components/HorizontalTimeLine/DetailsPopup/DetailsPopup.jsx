@@ -25,7 +25,6 @@ const renderWidgets = (data) => {
 }
 
 export default function DetailsCard({ data }) {
-  console.log("data", data)
   return (
     <div className='detailsCard__container'>
       <h3><span>{data.icon}</span> <span>{data && data.title}</span></h3>

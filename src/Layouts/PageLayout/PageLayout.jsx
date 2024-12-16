@@ -12,7 +12,7 @@ export default function PageLayout({ children, route }) {
         <div className='pageLayout__container'>
             <div className='pageLayout__container__sections__horizontal'>
                 <section className='pageLayout__container__leftSection'>
-                    <LeftMenu/>
+                    <LeftMenu isRightSectionCollapsed={isRightSectionCollapsed}/>
                 </section>
                 <section className='pageLayout__container__centerSection'>
                     {children}
