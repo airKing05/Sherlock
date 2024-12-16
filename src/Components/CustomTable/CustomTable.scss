@@ -88,3 +88,29 @@
     background-color: $primary-color-light-90;
     border-radius: 4px;
 }
+
+
+
+// action popup
+
+.table_action_popup__container{
+    min-width: 350px;
+    width: 50%;
+    border-radius: 1em;
+    padding: .5em 1em .1em 1em;
+
+    &__content{
+        margin-top: 2em;
+
+        h3{
+            text-transform: capitalize;
+        }
+    }
+    .table_action_popup__action{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 2em;
+        gap: 1em;
+        // border: 1px solid;
+    }
+}

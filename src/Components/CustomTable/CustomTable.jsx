@@ -30,6 +30,61 @@ const customData = [
     },
 ]
 
+const customData2 = {
+    rows : [
+        {
+            "id": 1,
+            "name": "Leanne Graham",
+            "username": "Bret",
+            "email": "Sincere@april.biz",
+            "phone": "1-770-736-8031",
+            "website": "hildegard.org",
+        },
+        {
+            "id": 2,
+            "name": "Ervin Howell",
+            "username": "Antonette",
+            "email": "Shanna@melissa.tv",
+            "phone": "010-692-6593",
+            "website": "anastasia.net",
+        },
+        {
+            "id": 3,
+            "name": "Clementine Bauch",
+            "username": "Samantha",
+            "email": "Nathan@yesenia.net",
+            "phone": "1-463-1234447",
+            "website": "ramiro.info",
+        }, 
+    ],
+    cols: [
+        {
+            field : 'id',
+            title: 'Id'
+        },
+        {
+            field: 'name',
+            title: 'Name'
+        },
+        {
+            field: 'username',
+            title: 'User Name'
+        },
+        {
+            field: 'email',
+            title: 'Email Id'
+        },
+        {
+            field: 'phone',
+            title: 'Contact'
+        },
+        {
+            field: 'website',
+            title: 'Bio'
+        }
+    ]
+}
+
 
 export default function CustomTable({ data = customData, hasActionColumn = false }) {
     const [sortConfig, setSortConfig] = useState(null);
