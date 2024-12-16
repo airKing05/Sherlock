@@ -4,10 +4,10 @@ import './index.scss'
 import App from './App.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
-const CLINT_ID = '974934989937-mcek41o0atqjent2m7ijddo0m9dof0rf.apps.googleusercontent.com'
-const CLINT_SECRET = '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'
+const CLINT_ID = import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID 
+const CLINT_SECRET = import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_SECRET  
 
-
+console.log("CLINT_ID ----", import.meta.env)
 createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={CLINT_ID}>
     {/* <React.StrictMode> */}
