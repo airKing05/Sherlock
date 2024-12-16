@@ -5,6 +5,7 @@
     padding: 2em;
     border-radius: 10px;
     box-shadow: $box-shadow;
+    // display: flex;
     gap: .5em;
     margin-bottom: 2em;
 }
@@ -24,7 +25,7 @@
     .chatWidget__content {
         color: $test-color-1;
         overflow-x: scroll;
-        max-width: 300px;
+        min-width: 300px;
     }
 }
 
