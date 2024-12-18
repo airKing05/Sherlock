@@ -51,7 +51,6 @@ const items = [{
 
 const CardDetail = ({ card, index, defaultView = false }) => {
     const [selectedCard, setSelectedCard] = useState(defaultView); 
-    console.log("carddddd", card)
     return (
         <div className="card-detail" key={index}>
             <button onClick={() => setSelectedCard(!selectedCard)}>click</button>

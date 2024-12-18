@@ -16,6 +16,7 @@ import CustomTable2 from '../../Components/CustomTable/CustomTable2'
 import TreeDiagram1 from './components/TreeDiagram/TreeDiagram1'
 import TreeDiagram2 from './components/TreeDiagram/TreeDigram2'
 import TreeDiagram3 from './components/TreeDiagram/TreeDiagram3'
+import HorizontalTreeDiagram from './components/TreeDiagram/HorizontalTreeDiagram'
 
 
 const HomeComponentRenderer = (props) => {
@@ -123,6 +124,12 @@ export default function Home() {
                     }
                 } )
             }
+
+
+            <CardLayout title={'horizontal Tree'}>
+                <HorizontalTreeDiagram />
+            </CardLayout>
+
         </div>
     )
 }
