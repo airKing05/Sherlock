@@ -7,6 +7,7 @@ import PageLayout from './Layouts/PageLayout/PageLayout'
 import Signin from './pages/Signin/Signin';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import { useState } from 'react';
+import TreeNetworkDiagram from './pages/Home/components/TreeDiagram/TreeNetworkDiagram';
 
 
 function App() {
@@ -37,6 +38,16 @@ function App() {
                   <History />
                 </PageLayout>
             </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/tree-network"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <PageLayout route="treeNetwork">
+                  <TreeNetworkDiagram />
+                </PageLayout>
+              </ProtectedRoute>
             }
           />
           <Route

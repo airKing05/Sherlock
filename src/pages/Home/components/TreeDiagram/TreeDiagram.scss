@@ -1,3 +1,5 @@
+@use '../../../../commonStyles/index' as *;
+
 .react-flow__edge-path {
     stroke-width: 2px;
     transition: stroke 0.3s ease;
@@ -27,18 +29,10 @@ circle {
     // fill: yellow;
 }
 
-.border {
-    // border-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%) 1;
-    // border-radius: 5px;
-    // /* this doesn't work */
-    // border-width: 5px;
-    // border-style: solid;
-    // padding: 5px;
-    // border-radius: 10px;
 
 
-}
 
+// treeNetworkDiagram
 .border {
     position: relative;
     border-radius: 5px;
@@ -59,4 +53,38 @@ circle {
     border-radius: 5px;
     background-image: linear-gradient(to right, #AD60CC 0%, #6A0DAD 100%);
     z-index: -1;
+}
+
+// action- pop-up
+.actionPopup__wrapper{
+    background-color: $white;
+    box-shadow: $box-shadow;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 99;
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+    }
+
+    button{
+        border: none;
+        background-color: transparent;
+    }
+    
+    .actionPopup__actionList{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        
+        span:hover{
+            text-decoration: underline;
+            color: #6A0DAD;
+        }
+    }
 }

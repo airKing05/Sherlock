@@ -8,6 +8,8 @@ import ChatIcon from '../../assets/svg/chatIcon.svg';
 import HistoryIcon from '../../assets/svg/historyIcon.svg';
 import LoginIcon from '../../assets/svg/loginIcon.svg';
 import LogoutIcon from '../../assets/svg/logoutIcon.svg';
+import TreeNetworkIcon from '../../assets/svg/treeNetwork.svg';
+
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -84,6 +86,14 @@ export default function LeftMenu({ isRightSectionCollapsed }) {
                     <span>
                         <img src={HistoryIcon} alt='icon'/>
                     </span> {!isCollapsed && 'History'} 
+                </button>
+                <button
+                    className={`menu-item ${activeMenuItem === "treeNetwork" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("history", '/tree-network')}
+                >
+                    <span>
+                        <img src={TreeNetworkIcon} alt='icon' />
+                    </span> {!isCollapsed && 'Tree-Network'}
                 </button>
                 <button
                     className={`menu-item ${activeMenuItem === "sign-in" ? "active" : ""}`}
