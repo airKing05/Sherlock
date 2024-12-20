@@ -5,6 +5,7 @@
     flex-direction: column;
     min-height: 100svh;
     overflow: hidden;
+    background-color: rgb(57, 56, 56);
 
     .dashboard__horizontal {
         display: flex;
@@ -20,24 +21,22 @@
         overflow-y: scroll;
     
         // border-right: 1px solid $border-color;
-        border: 1px solid;
-        min-width: 400px;
-        background-color: rgb(57, 56, 56);
+        // border: 1px solid;
+        min-width: 350px;
+        // background-color: rgb(57, 56, 56);
     }
 
     .dashboard__centerSection {
         flex: 1;
         height: 100vh;
-        background-color: #F7F9FA;
-        overflow: hidden;
+        // background-color: #F7F9FA;
+        overflow-y: hidden;
         position: relative;
         overflow-y: scroll;
-        border: 1px solid gold;
     }
 
     .dashboard__rightSection {
-        width: 400px;
-        border: 1px solid orange;
+        width: 450px;
         // background-color: #E4EFF1;
 
         .pageLayout__container__rightSection__renderIcon {

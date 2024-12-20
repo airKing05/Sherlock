@@ -33,6 +33,23 @@ circle {
 
 
 // treeNetworkDiagram
+.tree_network__custom_style {
+    .react-flow__controls {
+        .react-flow__controls-button{
+            border-bottom: none;
+            background: rgb(30, 30, 47);
+         svg {
+            fill: white;
+        }
+    }
+    }
+}
+
+.custom_node {
+    background: rgb(30, 30, 47) !important;
+    color: white;
+}
+
 .border {
     position: relative;
     border-radius: 5px;
@@ -56,33 +73,58 @@ circle {
 }
 
 // action- pop-up
-.actionPopup__wrapper{
-    background-color: $white;
+.actionPopup__wrapper {
+    background-color: #333;
+    color: #fff;
     box-shadow: $box-shadow;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     z-index: 99;
+    width: 200px;
 
-    header{
+    header {
         display: flex;
         justify-content: space-between;
         gap: 20px;
         text-transform: capitalize;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        font-size: $font-size-small;
+
+        strong {
+            width: 80%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &>div {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 50%;
+            border: 1px solid red;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+
+            svg{
+                fill: white;
+            }
+        }
     }
 
-    button{
-        border: none;
-        background-color: transparent;
-    }
-    
-    .actionPopup__actionList{
+    .actionPopup__actionList {
         display: flex;
         flex-direction: column;
         gap: 4px;
         cursor: pointer;
-        
-        span:hover{
+        font-size: $font-size-xs;
+
+        span:hover {
             text-decoration: underline;
             color: #6A0DAD;
         }

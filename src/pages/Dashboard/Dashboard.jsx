@@ -10,6 +10,7 @@ import MemoryChart3 from './components/Charts/MemoryChart3';
 import ComboChats from './components/Charts/ComboChats';
 import SupportCallsCharts from './components/Charts/SupportCallsCharts';
 import TreeNetworkDiagram from '../Home/components/TreeDiagram/TreeNetworkDiagram';
+import Chats from '../Chats/Chats';
 
 export default function Dashboard() {
     return (
@@ -28,7 +29,9 @@ export default function Dashboard() {
                 <section className='dashboard__centerSection'>
                     <TreeNetworkDiagram/>
                 </section>
-                <section className='dashboard__rightSection'>right</section>
+                <section className='dashboard__rightSection'>
+                      <Chats/>
+                </section>
             </div>
         </div>
     )

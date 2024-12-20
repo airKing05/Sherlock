@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 // import ReactFlow, { ReactFlowProvider, addEdge, MiniMap, Controls } from "react-flow-renderer";
 import ReactFlow, {
     MiniMap,
@@ -8,7 +8,8 @@ import ReactFlow, {
     useEdgesState,
     addEdge,
     Handle,
-    Position
+    Position,
+    BaseEdge, EdgeLabelRenderer, getBezierPath
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import './TreeDiagram.scss';
@@ -16,10 +17,8 @@ import CrossIcon from '../../../../assets/svg/crossIcon.svg'
 
 const CustomNode = ({ data }) => {
     return (
-        <div style={{
-            background: "#f0f8ff",
-        }}
-            className="border"
+        <div 
+            className="custom_node border"
         >
             <Handle type="target" position={Position.Top} />
             <div
@@ -33,6 +32,57 @@ const CustomNode = ({ data }) => {
             </div>
             <Handle type="source" position={Position.Bottom} id="a" />
         </div>
+    );
+};
+
+const CustomEdge = (props) => {
+   const {
+        id,
+            sourceX,
+            sourceY,
+            targetX,
+            targetY,
+            sourcePosition,
+            targetPosition,
+            label,
+            style = {},
+            markerEnd,
+} = props;
+    const [edgePath, labelX, labelY] = getBezierPath({
+        sourceX,
+        sourceY,
+        targetX,
+        targetY,
+        sourcePosition,
+        targetPosition,
+    });
+
+    console.log("props", props)
+    return (
+        <>
+            {/* Render the edge */}
+            <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
+
+            {/* Render the custom label */}
+            {label && (
+                <EdgeLabelRenderer>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                            background: 'rgb(30, 30, 47)',
+                            color: '#fff',
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                            fontSize: '12px',
+                        }}
+                    >
+                        {label}
+                    </div>
+                </EdgeLabelRenderer>
+            )}
+        </>
     );
 };
 
@@ -54,17 +104,20 @@ const data = {
     edges: [
         {
             id: "e1-3", source: "1", target: "3", label: "routes1",
-            style: { stroke: "#000", strokeWidth: 2 },
-            labelBgStyle: { fill: "#fff", stroke: "#333", strokeWidth: 1.5 },
-            labelBgPadding: [5, 5],
+            style: { stroke: "#0077ff", strokeWidth: 2, },
+            type:'customEdge',
+            // labelBgStyle: { fill: "rgb(30, 30, 47)", stroke: "#333", strokeWidth: 1.5, class: 'custom_type_1' },
+            // labelBgPadding: [5, 5],
         },
         {
             id: "e1-4", source: "1", target: "4", label: "routes",
             style: { stroke: "#555", strokeWidth: 2, strokeDasharray: "5,5" },
+            type: 'customEdge',
         },
         {
             id: "e2-4", source: "2", target: "4", label: "triggers", animated: true,
-            style: { stroke: "#0077ff", strokeWidth: 2 }
+            style: { stroke: "#0077ff", strokeWidth: 2 },
+            type: 'customEdge',
         },
         {
             id: "e3-5", source: "3", target: "5", label: "get, list", type: "straight",
@@ -82,7 +135,7 @@ const data = {
             id: "e6-9", source: "6", target: "9", label: "runs on second",
             labelStyle: { fill: "#000", fontSize: "12px", fontWeight: "bold", border: '1px solid pink' },
         },
-        { id: "e7-9", source: "7", target: "9", label: "runs on" },
+        { id: "e7-9", source: "7", target: "9", label: "runs on", type: 'customEdge' },
         {
             id: "e9-10", source: "9", target: "10", label: "access",
             labelBgStyle: {
@@ -102,6 +155,10 @@ const nodeTypes = {
     customNode: CustomNode
 };
 
+const edgeTypes = {
+    customEdge: CustomEdge
+};
+
 export default function TreeNetworkDiagram() {
     const [nodes, setNodes, onNodesChange] = useNodesState(data?.nodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(data?.edges);
@@ -109,6 +166,7 @@ export default function TreeNetworkDiagram() {
     const [actionPopup, setActionPopup] = useState(null);
     const [newNodeId, setNewNodeId] = useState(11);
 
+    const actionPopupRef = useRef(null);
 
     const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
@@ -123,7 +181,6 @@ export default function TreeNetworkDiagram() {
 
 
     const handleNodeClick = (event, node) => {
-        console.log("node", event, node)
         event.stopPropagation(); // Prevent any unwanted propagation
         setActionPopup(node);
        
@@ -172,11 +229,32 @@ export default function TreeNetworkDiagram() {
     }
 
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // If click is outside the popup, close the popup
+            if (actionPopupRef.current && !actionPopupRef.current.contains(event.target)) {
+                setActionPopup(null);
+            }
+        };
+
+        // Add event listener on mount
+        document.addEventListener('click', handleClickOutside);
+
+        // Cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+
     return (
 
-        <div style={{ height: '80vh', width: '90%', border: '1px solid #E0E0E0', margin: '50px auto', borderRadius: '5px' }}>
+        <div style={{ height: '98vh', width: '96%', border: '1px solid rgb(30, 30, 47)', margin: '10px auto', borderRadius: '5px' }}
+        className="tree_network__custom_style tree_network__wrapper"
+        >
             <ReactFlow
                 nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
                 nodes={nodes}
                 edges={visibleEdges}
                 onNodesChange={onNodesChange}
@@ -185,28 +263,40 @@ export default function TreeNetworkDiagram() {
                 onEdgeClick={handleEdgeClick}
                 onNodeClick={handleNodeClick}
                 fitView
+                proOptions={{ hideAttribution: true }}
+                colorMode="dark"
             >
                 {/* <MiniMap /> */}
-                <Controls />
-                <Background />
+                <Controls 
+                    // style={{
+                    //     backgroundColor: 'rgb(30, 30, 47)', // Light grey background
+                    //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Shadow for depth
+                    //     borderRadius: '8px', // Rounded corners
+                    //     padding: '10px', // Space around the buttons
+                    // }}
+                />
+                <Background
+                    color="gold"
+                 />
             </ReactFlow>
 
             {actionPopup && (
                 <div
+                    ref={actionPopupRef}
                     style={{
                         position: "absolute",
                         top: actionPopup.position.y,
-                        left: actionPopup.position.x,
+                        left: actionPopup.position.x - 50,
                     }}
                     className="actionPopup__wrapper"
                 >
                     <header>
                         <strong>{actionPopup.data.label}</strong>
-                        <button 
+                        <div 
                         onClick={() => setActionPopup(null)}
                         >
-                            <img src={CrossIcon} alt="icon"/>
-                        </button>
+                            <img width={18} height={18} src={CrossIcon} alt="icon"/>
+                        </div>
                     </header>
 
                     <div className="actionPopup__actionList">
