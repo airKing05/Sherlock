@@ -7,6 +7,32 @@
     overflow: hidden;
     background-color: rgb(57, 56, 56);
 
+    .dashboard__header{
+      color: #ffffff;
+      padding: 10px;
+      border-bottom: 2px solid #1e1e2f;
+
+      ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        // box-shadow: $box-shadow;
+
+        .active_dashboard_tab{
+            background-color: #1e1e2f;
+        }
+
+        li{
+            border: 1px solid #1e1e2f;
+            padding: 5px 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+      }
+    }
+
     .dashboard__horizontal {
         display: flex;
         flex-direction: row;
@@ -15,7 +41,7 @@
 
     .dashboard__leftSection {
         min-height: fit-content;
-        height: 100vh;
+        height: 90vh;
         transition: all .3s ease;
         overflow: hidden;
         overflow-y: scroll;
@@ -28,7 +54,7 @@
 
     .dashboard__centerSection {
         flex: 1;
-        height: 100vh;
+        height: 90vh;
         // background-color: #F7F9FA;
         overflow-y: hidden;
         position: relative;
@@ -37,6 +63,7 @@
 
     .dashboard__rightSection {
         width: 450px;
+        height: 90vh;
         // background-color: #E4EFF1;
 
         .pageLayout__container__rightSection__renderIcon {

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-// import ReactFlow, { ReactFlowProvider, addEdge, MiniMap, Controls } from "react-flow-renderer";
 import ReactFlow, {
     MiniMap,
     Controls,
@@ -36,18 +35,7 @@ const CustomNode = ({ data }) => {
 };
 
 const CustomEdge = (props) => {
-   const {
-        id,
-            sourceX,
-            sourceY,
-            targetX,
-            targetY,
-            sourcePosition,
-            targetPosition,
-            label,
-            style = {},
-            markerEnd,
-} = props;
+   const {id, sourceX,sourceY,targetX,targetY,sourcePosition,targetPosition,label,style = {},markerEnd} = props;
     const [edgePath, labelX, labelY] = getBezierPath({
         sourceX,
         sourceY,
@@ -57,13 +45,10 @@ const CustomEdge = (props) => {
         targetPosition,
     });
 
-    console.log("props", props)
     return (
         <>
-            {/* Render the edge */}
             <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
 
-            {/* Render the custom label */}
             {label && (
                 <EdgeLabelRenderer>
                     <div
@@ -86,7 +71,6 @@ const CustomEdge = (props) => {
     );
 };
 
-// Nodes and edges data
 const data = {
     nodes: [
         { id: "1", type: "customNode", data: { label: "Main", icon: "🌐" }, position: { x: 250, y: 50 } },
@@ -106,12 +90,10 @@ const data = {
             id: "e1-3", source: "1", target: "3", label: "routes1",
             style: { stroke: "#0077ff", strokeWidth: 2, },
             type:'customEdge',
-            // labelBgStyle: { fill: "rgb(30, 30, 47)", stroke: "#333", strokeWidth: 1.5, class: 'custom_type_1' },
-            // labelBgPadding: [5, 5],
         },
         {
             id: "e1-4", source: "1", target: "4", label: "routes",
-            style: { stroke: "#555", strokeWidth: 2, strokeDasharray: "5,5" },
+            style: { stroke: "#ffffff", strokeWidth: 2, strokeDasharray: "5,5" },
             type: 'customEdge',
         },
         {
@@ -142,8 +124,8 @@ const data = {
                 fill: "#33cc33",
                 stroke: "#000",
                 strokeWidth: 1,
-                rx: 8, // Rounded corners
-                ry: 8, // Rounded corners
+                rx: 8, 
+                ry: 8, 
             },
             labelBgPadding: [8, 10],
             style: { stroke: "#33cc33", strokeWidth: 2 },
@@ -162,7 +144,7 @@ const edgeTypes = {
 export default function TreeNetworkDiagram() {
     const [nodes, setNodes, onNodesChange] = useNodesState(data?.nodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(data?.edges);
-    const [hiddenEdges, setHiddenEdges] = useState(new Set()); // To track hidden edges
+    const [hiddenEdges, setHiddenEdges] = useState(new Set()); 
     const [actionPopup, setActionPopup] = useState(null);
     const [newNodeId, setNewNodeId] = useState(11);
 
@@ -172,7 +154,7 @@ export default function TreeNetworkDiagram() {
 
     // Handle edge click to hide the clicked edge
     const handleEdgeClick = (event, edge) => {
-        event.stopPropagation(); // Prevent click propagation
+        event.stopPropagation(); 
         setHiddenEdges((prev) => new Set([...prev, edge.id]));
     };
 
@@ -181,7 +163,7 @@ export default function TreeNetworkDiagram() {
 
 
     const handleNodeClick = (event, node) => {
-        event.stopPropagation(); // Prevent any unwanted propagation
+        event.stopPropagation();
         setActionPopup(node);
        
     };
@@ -231,16 +213,13 @@ export default function TreeNetworkDiagram() {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            // If click is outside the popup, close the popup
             if (actionPopupRef.current && !actionPopupRef.current.contains(event.target)) {
                 setActionPopup(null);
             }
         };
 
-        // Add event listener on mount
         document.addEventListener('click', handleClickOutside);
 
-        // Cleanup event listener on unmount
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -249,7 +228,8 @@ export default function TreeNetworkDiagram() {
 
     return (
 
-        <div style={{ height: '98vh', width: '96%', border: '1px solid rgb(30, 30, 47)', margin: '10px auto', borderRadius: '5px' }}
+        <div 
+        style={{ height: '98.3%', width: '96%', border: '1px solid rgb(30, 30, 47)', margin: '10px auto', borderRadius: '5px' }}
         className="tree_network__custom_style tree_network__wrapper"
         >
             <ReactFlow
@@ -266,15 +246,7 @@ export default function TreeNetworkDiagram() {
                 proOptions={{ hideAttribution: true }}
                 colorMode="dark"
             >
-                {/* <MiniMap /> */}
-                <Controls 
-                    // style={{
-                    //     backgroundColor: 'rgb(30, 30, 47)', // Light grey background
-                    //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Shadow for depth
-                    //     borderRadius: '8px', // Rounded corners
-                    //     padding: '10px', // Space around the buttons
-                    // }}
-                />
+                <Controls/>
                 <Background
                     color="gold"
                  />

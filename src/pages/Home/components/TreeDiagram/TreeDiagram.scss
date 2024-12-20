@@ -89,6 +89,7 @@ circle {
         text-transform: capitalize;
         margin-bottom: 5px;
         font-size: $font-size-small;
+        border-bottom: 1px solid #1e1e2f;
 
         strong {
             width: 80%;
@@ -126,7 +127,8 @@ circle {
 
         span:hover {
             text-decoration: underline;
-            color: #6A0DAD;
+            color: #c68cef;
+            // color: #1e1e2f;
         }
     }
 }
