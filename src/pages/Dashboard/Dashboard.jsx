@@ -45,58 +45,59 @@ export default function Dashboard() {
                 </ul>
             </header>
             {
-                selectedView === 'all' ? <div className='dashboard__horizontal'>
-                    <section className='dashboard__leftSection'>
-                        <MemoryCpuChart />
-                        <Logins />
-                        <ClintSidePageLoadChart />
-                        <GoogleHits />
-                        {/* <MemoryChart/> */}
-                        {/* <MemoryChat2/> */}
-                        <ComboChats />
-                    </section>
-                    <section className='dashboard__centerSection'>
-                        <TreeNetworkDiagram />
-                    </section>
-                    <section className='dashboard__rightSection'>
-                        <Chats />
-                    </section>
-                </div> : null
+                selectedView === 'all' ?
+                    <div className='dashboard__horizontal'>
+                        <section className='dashboard__leftSection'>
+                            <MemoryCpuChart />
+                            <Logins />
+                            <ClintSidePageLoadChart />
+                            <GoogleHits />
+                            {/* <MemoryChart/> */}
+                            {/* <MemoryChat2/> */}
+                            <ComboChats />
+                        </section>
+                        <section className='dashboard__centerSection'>
+                            <TreeNetworkDiagram />
+                        </section>
+                        <section className='dashboard__rightSection'>
+                            <Chats />
+                        </section>
+                    </div> : null
             }
             {
-                selectedView === 'only-network' ? <div className='dashboard__horizontal only_network'>
-                    <section className='dashboard__centerSection'>
-                        <TreeNetworkDiagram />
-                    </section>
-                </div> : null
+                selectedView === 'only-network' ?
+                    <div className='dashboard__horizontal'>
+                        <section className='dashboard__centerSection'>
+                            <TreeNetworkDiagram />
+                        </section>
+                    </div> : null
             }
             {
-                selectedView === 'graph-network' ? <div className='dashboard__horizontal graph_network'>
-                    <section className='dashboard__leftSection'>
-                        <MemoryCpuChart />
-                        <Logins />
-                        <ClintSidePageLoadChart />
-                        <GoogleHits />
-                        {/* <MemoryChart/> */}
-                        {/* <MemoryChat2/> */}
-                        <ComboChats />
-                    </section>
-                    <section className='dashboard__centerSection'>
-                        <TreeNetworkDiagram />
-                    </section>
-                </div> : null
+                selectedView === 'graph-network' ?
+                    <div className='dashboard__horizontal'>
+                        <section className='dashboard__leftSection'>
+                            <MemoryCpuChart />
+                            <Logins />
+                            <ClintSidePageLoadChart />
+                            <GoogleHits />
+                            <ComboChats />
+                        </section>
+                        <section className='dashboard__centerSection'>
+                            <TreeNetworkDiagram />
+                        </section>
+                    </div> : null
             }
             {
-                selectedView === 'network-chat' ? <div className='dashboard__horizontal network-chat'>
-                    <section className='dashboard__centerSection'>
-                        <TreeNetworkDiagram />
-                    </section>
-                    <section className='dashboard__rightSection'>
-                        <Chats />
-                    </section>
-                </div> : null
+                selectedView === 'network-chat' ?
+                    <div className='dashboard__horizontal'>
+                        <section className='dashboard__centerSection'>
+                            <TreeNetworkDiagram />
+                        </section>
+                        <section className='dashboard__rightSection'>
+                            <Chats />
+                        </section>
+                    </div> : null
             }
-
         </div>
     )
 }
