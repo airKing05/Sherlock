@@ -1,7 +1,9 @@
 @use '../../../../commonStyles/index' as *;
 
 .chatNav__wrapper {
-    border-bottom: 1px solid $border-color;
+    // border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #1E1E2F;
+    background-color: #1E1E2F;
 }
 
 .chatNav__row {
@@ -19,8 +21,10 @@
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
-        color: $text-color;
-        font-size: $heading-font-size-6;
+        // color: $text-color;
+        color: #ffffff;
+        // font-size: $heading-font-size-6;
+        font-size: $font-size-small;
     }
 }
 
@@ -54,7 +58,7 @@
         padding: min(6vh, 3.2rem) .1em;
         z-index: 99;
         transform: translateX(160%);
-        border-radius: 10px;
+        border-radius: 5px;
         //    backdrop-filter: blur(10px);
     }
 }
@@ -81,7 +85,8 @@
 
 
 .vertical-line {
-    border-right: 1px solid $border-color;
+    // border-right: 1px solid $border-color;
+    border-right: 1px solid #ffffff;
     height: 2.4rem;
     margin-right: 20px;
 

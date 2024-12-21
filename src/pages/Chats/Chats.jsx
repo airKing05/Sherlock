@@ -38,7 +38,7 @@ const ChatWidgetRenderer = (props) => {
       </ChatWidget>
     default:
       break;
-  }
+  } 
 }
 
 

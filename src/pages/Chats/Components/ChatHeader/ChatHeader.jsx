@@ -47,7 +47,12 @@ export default function ChatHeader() {
                         // className='chatNav__list'
                     >
                         <li>
-                            <Button>
+                            <Button
+                            style={{
+                                border: '1px solid #ffffff',
+                                color: '#ffffff'
+                            }}
+                            >
                                 <>
                                     <img src={PlusIcon} alt='PlusIcon' />
                                     <span>New chat</span> 
