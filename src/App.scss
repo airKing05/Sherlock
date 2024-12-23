@@ -9,11 +9,25 @@
     display: flex;
 }
 
+.col{
+    width: 50%;
+}
+
 .col-5{
    width: 35%;
 }
 .col-7 {
     width: 65%;
+}
+
+.col-2{
+    // border: 1px solid red;
+  width: 20%;
+}
+
+.col-10 {
+    // border: 1px solid yellow;
+    width: 80%;
 }
 
 .display-none{

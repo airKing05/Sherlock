@@ -12,7 +12,37 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import './TreeDiagram.scss';
-import CrossIcon from '../../../../assets/svg/crossIcon.svg'
+import CrossIcon from '../../../../assets/svg/crossIcon.svg';
+import AlertBellIcon from '../../../../assets/svg/alertBellIcon.svg';
+import usePopupToggle from "../../../../Hooks/usePopupToggle";
+
+const CustomControls = ({ onCustomAction }) => {
+    return (
+        <div style={{ position: 'absolute', left: 10, bottom: 40, zIndex: 4,  }}>
+            {/* Default Controls */}
+            <Controls />
+
+            {/* Custom Button */}
+            <button
+                style={{
+                    marginInline: '15px',
+                    padding: '4px 6px',
+                    background: '#007BFF',
+                    color: '#ffffff',
+                    border: 'none',
+                    cursor: 'pointer',
+                    position: 'absolute',
+                    backgroundColor: 'rgb(30, 30, 47)'                  
+                }}
+                onClick={() => onCustomAction()}
+            >
+                {/* <img width={18} height={18} src={CrossIcon} alt="icon" /> */}
+                <img width={14} height={14} src={AlertBellIcon} alt="icon"/>
+            </button>
+        </div>
+    );
+};
+
 
 const CustomNode = ({ data }) => {
     return (
@@ -147,9 +177,15 @@ export default function TreeNetworkDiagram() {
     const [hiddenEdges, setHiddenEdges] = useState(new Set()); 
     const [actionPopup, setActionPopup] = useState(null);
     const [newNodeId, setNewNodeId] = useState(11);
+    const [controlNetworkActionPopup, setControlNetworkActionPopup] = useState(false);
+    
 
     const actionPopupRef = useRef(null);
 
+
+    const { showPopup, setShowPopup, popupRef } = usePopupToggle()
+
+    console.log("showPopupshowPopup", showPopup, setShowPopup, popupRef)
     const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
     // Handle edge click to hide the clicked edge
@@ -227,11 +263,11 @@ export default function TreeNetworkDiagram() {
 
 
     return (
-
         <div 
         style={{ height: '98.3%', width: '96%', border: '1px solid rgb(30, 30, 47)', margin: '10px auto', borderRadius: '5px' }}
         className="tree_network__custom_style tree_network__wrapper"
         >
+      
             <ReactFlow
                 nodeTypes={nodeTypes}
                 edgeTypes={edgeTypes}
@@ -246,7 +282,10 @@ export default function TreeNetworkDiagram() {
                 proOptions={{ hideAttribution: true }}
                 colorMode="dark"
             >
-                <Controls/>
+                <CustomControls
+                    onCustomAction={() => setControlNetworkActionPopup(true)} 
+                />
+                {/* <Controls/> */}
                 <Background
                     color="gold"
                  />
@@ -258,7 +297,7 @@ export default function TreeNetworkDiagram() {
                     style={{
                         position: "absolute",
                         top: actionPopup.position.y,
-                        left: actionPopup.position.x - 50,
+                        left: actionPopup.position.x,
                     }}
                     className="actionPopup__wrapper"
                 >
@@ -278,6 +317,51 @@ export default function TreeNetworkDiagram() {
                     </div>
                 </div>
             )}
+
+            {
+                controlNetworkActionPopup && (
+                    <div
+                        ref={popupRef}
+                        style={{
+                            position: "absolute",
+                            bottom: 20,
+                            left: 86,
+                        }}
+                        className="actionPopup__wrapper actionPopup__actionList--controlActionWrapper"
+                    >
+                        <header>
+                            <div
+                                onClick={() => setControlNetworkActionPopup(false)}
+                            >
+                                <img width={18} height={18} src={CrossIcon} alt="icon" />
+                            </div>
+                        </header>
+
+                        <div className="actionPopup__actionList actionPopup__actionList--controlActionList">
+                            <ul>
+                                <li className="row">
+                                    <div className="col-2">type</div>
+                                    <div className="col-10">
+                                        Details theres is issue in there, Details theres is issue in there, Details theres is issue in there
+                                    </div>
+                                </li>
+                                <li className="row">
+                                    <div className="col-2">type</div>
+                                    <div className="col-10">
+                                        Details theres is issue in there, Details theres is issue in there, Details theres is issue in there 
+                                    </div>
+                                </li>
+                                <li className="row">
+                                    <div className="col-2">type</div>
+                                    <div className="col-10">
+                                        Details theres is issue in there, Details theres is issue in there, Details theres is issue in there
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                )
+            }
         </div>
 
     );
