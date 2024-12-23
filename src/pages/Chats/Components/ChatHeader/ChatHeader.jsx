@@ -26,7 +26,7 @@ export default function ChatHeader() {
         <nav className='chatNav__wrapper'>
             <div className='row chatNav__row'>
                 <div className='col chatNav__colLeft'>
-                    <h5> How the modal determines token</h5>
+                    <h6> How the modal determines token</h6>
                 </div>
                 <button className='chatNav__toggler'
                 aria-expanded={menuVisible}
@@ -47,7 +47,12 @@ export default function ChatHeader() {
                         // className='chatNav__list'
                     >
                         <li>
-                            <Button>
+                            <Button
+                            style={{
+                                border: '1px solid #ffffff',
+                                color: '#ffffff'
+                            }}
+                            >
                                 <>
                                     <img src={PlusIcon} alt='PlusIcon' />
                                     <span>New chat</span> 

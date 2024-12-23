@@ -1,36 +1,46 @@
 @use '../../../../commonStyles/index' as *;
 
 .chatWidget__wrapper {
-    border: 1px solid $border-color;
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: $box-shadow;
+    // border: 1px solid $border-color;
+    // padding: 2em;
+    // border-radius: 5px;
+    // box-shadow: $box-shadow;
+    // display: flex;
     gap: .5em;
-    margin-bottom: 2em;
+    margin-bottom: 1.6em;
+    border-bottom: 1px solid $border-color
 }
 
 .chatWidget__wrapper--me {
     gap: .5em;
-    margin-bottom: 2em;
+    margin-bottom: .4em;
 }
 
 .chatWidget__profile {}
-
+.chatWidget__content__wrapper{
+    width: 100%;
+}
 .chatWidget__main {
-    font-size: $font-size-small;
+    // font-size: $font-size-small;
+    font-size: $font-size-xs;
 
-    p {
-        color: $test-color-1;
+    .chatWidget__content {
+        // color: $test-color-1;
+        overflow-x: scroll;
+        min-width: 300px;
+        color: #ffffff;
     }
 }
 
 .chatWidget__header {
     display: flex;
-    gap: 1em;
+    gap: .5em;
     align-items: center;
+    color: #ffffff;
 
-    h5 {
-        font-size: $heading-font-size-5;
+    h6 {
+        // font-size: $heading-font-size-6;
+        font-size: $font-size-small;
         text-transform: capitalize;
     }
 
@@ -40,9 +50,10 @@
     }
 
     span {
-        font-size: $font-size-xs;
+        // font-size: $font-size-xs;
+        font-size: $font-size-xxs;
         text-transform: uppercase;
-        color: $test-color-1;
+        // color: $test-color-1;
     }
 }
 
@@ -50,7 +61,8 @@
     display: flex;
     // border: 1px solid $border-color;
     justify-content: space-between;
-    margin-top: 2em;
+    margin-top: .6em;
+    padding-bottom: .4em;
 
 
     .chatWidget__footer__iconList {
@@ -62,9 +74,12 @@
     }
 
     .chatWidget__footer__tag span {
-        background-color: $gray-light;
+        // background-color: $gray-light;
+        background-color: #1e1e2f;
+        color: #ffffff;
         padding: .5em;
         border-radius: 5px;
         font-size: $font-size-xs;
+        box-shadow: $box-shadow-35;
     }
 }

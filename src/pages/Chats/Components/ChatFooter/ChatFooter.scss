@@ -2,7 +2,8 @@
 
 .chatFooter {
     margin-inline: 3em;
-    border: 1px solid $border-color;
+    // border: 1px solid $border-color;
+    // border: 1px solid #1e1e2f;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 1.5em;
@@ -14,9 +15,18 @@
     left: 0;
     width: calc(100% - 6em);
     align-items: center;
+    // background-color: $white;
+
+    &.chatFooter--collapsed{
+      width: 100%;
+      margin-inline: 0em;
+      padding: 0.5em .75em;
+      border-radius: 0;
+    }
 
     .row{
-border-bottom: 1px solid $border-color;;
+      // border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #1e1e2f;
     }
 
     input{
@@ -26,6 +36,12 @@ border-bottom: 1px solid $border-color;;
         padding-left: 0;
         border: none;
         margin-right: 1.2em;
+        background-color: transparent;
+        // color: $text-color;
+        color: #ffffff;
+        &:focus {
+         outline: none;
+        }
     }
 
     button{

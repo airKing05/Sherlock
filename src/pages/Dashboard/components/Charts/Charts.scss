@@ -1,0 +1,38 @@
+.custom_memory-cpu{
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-right{
+        justify-content: space-between !important;
+        align-items: center
+    }
+
+.custom-marker{
+    width: 10px;
+    height: 4px;
+    border-radius: 2px;
+    display: block;
+    border: 1px solid pink;
+}
+}
+
+
+.custom_memory{
+    .tick-line, .tick-value{
+        display: none !important;
+    }
+    .react-gauge-component .react-gauge-component-labels {
+            display: none;
+        }
+    .sherlock-gauge{
+        position: relative;
+
+        .value-text{
+            transform: translate(21%,35%);
+        }
+        text{
+        font-size: 12px !important;
+        }
+
+        svg > g{
+            transform: translate(28%, 14%)
+        }
+    }
+}

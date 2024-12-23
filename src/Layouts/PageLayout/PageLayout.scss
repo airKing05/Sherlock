@@ -1,0 +1,68 @@
+@use '../../commonStyles/index' as *;
+
+.pageLayout__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: hidden;
+
+    .pageLayout__container__sections__horizontal {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+    }
+
+        .pageLayout__container__leftSection {
+            min-height: fit-content;
+            height: 100vh;
+            transition: all .3s ease;
+            overflow-y: scroll;
+            // background-color: orange;
+            border-right: 1px solid $border-color;
+            // border: 1px solid;
+        }
+
+    .pageLayout__container__centerSection {
+        flex: 1;
+        height: 100vh;
+        background-color: #F7F9FA;
+        overflow: hidden;
+        position: relative;
+        overflow-y: scroll;
+    }
+
+    .pageLayout__container__rightSection {
+        width: 500px;
+       
+        // background-color: #E4EFF1;
+
+        .pageLayout__container__rightSection__renderIcon{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+
+            span{
+            //    box-shadow: $box-shadow;
+            cursor: pointer;
+            }
+        }
+
+        .pageLayout__container__rightSection__renderComponent{
+
+          >  span{
+                display: block;
+               margin-left: 10px;
+               margin-top: 10px;
+               cursor: pointer;
+            }
+        }
+    }
+
+    .pageLayout__container__rightSection.collapsedRight {
+        width: 70px;
+
+    }
+
+
+
+}

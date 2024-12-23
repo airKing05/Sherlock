@@ -1,24 +1,20 @@
 import React from 'react';
 import { CopyBlock, CodeBlock, dracula } from 'react-code-blocks';
-import CardLayout from '../../../../Layouts/CardLayout/CardLayout';
 
-
-export default function CodeCard() {
-    const code = `for(let i = 0; i<=5; i++){
+const customData = `for(let i = 0; i<=5; i++){
     console.log(i)
     }`;
+export default function CodeCard({data = customData}) {
+   
     return (
-        <CardLayout title="Code Support">
             <CodeBlock
                 style={{ background: 'yellow' }}
-                text={code}
+                text={data}
                 language={'javaScript'}
                 showLineNumbers={true}
                 theme={dracula}
                 codeBlock
                 lines={['1:2', 8]}
             ></CodeBlock>
-        </CardLayout>
-
     )
 }

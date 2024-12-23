@@ -12,40 +12,53 @@
     padding: 1em;
     border-radius: 10px;
     box-shadow: $box-shadow;
-
-    .card__title {
-        font-size: $heading-font-size-5;
-        text-transform: uppercase;
-        color: $secondary-color; //$test-color-1; // $text-color-light;
-        margin-bottom: .75em;
-    }
-
-    .card__body {
-        font-size: $font-size-small;
-    }
-    .card__list {
-        list-style: none;
-        font-size: $font-size-small;
-        // color: $text-color-light;
-
-        .card__list__item {
-            display: flex;
-            justify-content: space-between;
-            // border: 1px solid red;
-            align-items: center;
-           
-        }
-    }
-
-    .card__left {
-        display: flex;
-    }
-
-    
-    .card__body>span {
-        background: #1e1e1e !important;
-        color: rgb(214 214 187) !important;
-        //   color: $text-color !important;
-    }
 }
+
+ .card__title {
+     font-size: $heading-font-size-5;
+     text-transform: uppercase;
+     color: $secondary-color; //$test-color-1; // $text-color-light;
+     margin-bottom: .75em;
+ }
+
+ .card__body {
+     font-size: $font-size-small;
+     max-width: 740;
+     overflow-x: scroll;
+ }
+
+ .card__list {
+     list-style: none;
+     font-size: $font-size-small;
+     // color: $text-color-light;
+
+
+ }
+
+ .card__list__item {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+
+ .accordionContent {
+     border: 1px solid $border-color;
+     padding: 10px;
+     border-radius: 5px;
+     margin-bottom: 10px;
+     margin-inline: .75em;
+
+ }
+
+ .card__left {
+     display: flex;
+ }
+
+
+ .card__body>span {
+     background: #1e1e1e !important;
+     color: rgb(214 214 187) !important;
+     //   color: $text-color !important;
+ }
 
