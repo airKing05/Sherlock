@@ -31,7 +31,8 @@
      list-style: none;
      font-size: $font-size-small;
      // color: $text-color-light;
-
+     
+    
 
  }
 
@@ -39,6 +40,11 @@
      display: flex;
      justify-content: space-between;
      align-items: center;
+
+    &:hover {
+            background-color: #1e1e2f;
+            border-radius: 2px;
+        }
  }
 
 

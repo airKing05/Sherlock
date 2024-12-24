@@ -1,7 +1,12 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
-export default function GoogleHits() {
+
+
+
+export default function GoogleHits({data}) {
+    const { title, data: axisData } = data.answer;
+
     const options = {
         chart: {
             type: 'bar',
@@ -31,7 +36,7 @@ export default function GoogleHits() {
             offsetY: '110%',
         },
         xaxis: {
-            categories: ['A-series', 'B-series', 'C-series', 'D-series', 'E-series'],
+            categories: axisData.xaxis.data,
             labels: {
                 style: {
                     colors: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
@@ -57,17 +62,12 @@ export default function GoogleHits() {
         },
     };
 
-    const series = [
-        {
-            name: 'Google hits',
-            data: [4, 27.7, 37.1, 66.5, 21.2], // Actual data values
-        },
-    ];
+    const series = axisData.yaxis;
     return (
          <div 
                 className='custom_memory-cpu'
                 style={{ paddingBottom: "2px", background: "#1e1e2f", borderRadius: "2px", margin: '10px', textAlign:'center' }}>
-                    <h6 style={{ color: "#fff", width: '100%' }}>Google hits</h6>
+                    <h6 style={{ color: "#fff", width: '100%' }}>{title}</h6>
                     <Chart options={options} series={series} type="bar" height={200} />
                 </div>
        

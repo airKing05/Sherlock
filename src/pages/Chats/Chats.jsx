@@ -64,10 +64,11 @@ export default function Chats(props) {
     const intervalId = setInterval(() => {
       if (count >= respData.data.length-1) {
         clearInterval(intervalId);
-      }
-      setChatWidgets((prevState) => [...prevState, respData.data[count-1] ])
+      } 
       count++;
-    }, 2000);
+      setChatWidgets((prevState) => [...prevState, respData.data[count-1] ])
+     
+    }, 1000);
   }
 
 
@@ -83,6 +84,7 @@ export default function Chats(props) {
 
   useEffect(() => {
     socket.on('message', (data) => {
+      console.log("data", data)
       setMessages((prev) => [data.msg]);
       renderOneByOneWidgets(data.widgets)
     });
@@ -99,6 +101,7 @@ export default function Chats(props) {
     }
   }, [chatWidgets.length])
   
+  console.log("chatWidgets", chatWidgets)
  
 
   return (

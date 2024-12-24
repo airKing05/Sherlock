@@ -69,7 +69,7 @@ const AccordionRow = (props) => {
         <li
             key={index}
         >
-            <div className={`card__list__item btn`} >
+            <div className={`card__list__item`} >
                 <div className='card__left'>
                     <Chip title={data.title} status={data.status} color={data.color}/>
                     {

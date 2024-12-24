@@ -38,7 +38,7 @@ export default function ChatHeader() {
                     {/* <img src={MenuIcon} alt='MenuIcon' /> */}
                    
                 </button>
-                <div className='col chatNav__colRight'>
+                {/* <div className='col chatNav__colRight'>
                     <ul 
                     // style={{
                     //         transform: menuVisible && 'translateX(0)'
@@ -63,8 +63,6 @@ export default function ChatHeader() {
                                 &nbsp;
                                 &nbsp;
                             </div>
-                            {/* &nbsp;
-                            &nbsp; */}
                         </li>
                   
                         <li>
@@ -79,7 +77,7 @@ export default function ChatHeader() {
                             </a>
                         </li>
                 </ul>
-                </div>
+                </div> */}
             </div>
         </nav>
     )
