@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.scss';
 import MemoryCpuChart from './components/Charts/MemoryCpuChart';
 import Logins from './components/Charts/Logins';
@@ -17,21 +17,12 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import CalenderIcon from '../../assets/svg/calender.svg';
 import Button from '../../Common/Button/Button';
+import useGetApiRequest from '../../Hooks/useGetApiRequest';
+import { graphApis } from '../../apis/apis';
+import HashLoaderComponent from '../../Common/Loader/HashLoaderComponent';
 
-const generateTimeOptions = (interval = 30) => {
-    const options = [];
-    for (let hour = 0; hour < 24; hour++) {
-        for (let minutes = 0; minutes < 60; minutes += interval) {
-            const time = `${hour.toString().padStart(2, "0")}:${minutes
-                .toString()
-                .padStart(2, "0")}`;
-            options.push({ value: time, label: time });
-        }
-    }
-    return options;
-};
 
-const intervals = [
+const options = [
     { label: "Last 5 min", value: 5 },
     { label: "Last 15 min", value: 15 },
     { label: "Last 30 min", value: 30 },
@@ -43,10 +34,6 @@ const intervals = [
     { label: "Last 24 hr", value: 1440 },
     { label: "Last 2 days", value: 2880 },
 ];
-
-const timeOptions = intervals;
-
-const options = timeOptions;
 
 const customStyles = {
     control: (base) => ({
@@ -102,6 +89,187 @@ const customStyles = {
     }),
 };
 
+
+// chats data
+const memoryCpuData = {
+    answer_type: "graph",
+    graph_type: "memory-cpu",
+    answer: {
+        title: 'Memory / CPU ',
+        data: {
+            xaxis: {
+                name: "Time",
+                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
+            },
+            yaxis: [
+                {
+                    name: "Memory",
+                    type: "area",
+                    data: [2, 3.5, 4, 3.2, 3.8, 2.9, 6],
+                },
+                {
+                    name: "CPU",
+                    type: "line",
+                    data: [1.5, 2.1, 1.8, 2.7, 3.2, 3.8, 5.5],
+                },
+            ]
+        }
+    }
+}
+const loginData = {
+    answer_type: "graph",
+    graph_type: "login",
+    answer: {
+        title: 'Logins',
+        data: {
+            xaxis: {
+                name: "Time",
+                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
+            },
+            yaxis: [
+                {
+                    name: "login",
+                    type: "area",
+                    data: [60, 65, 55, 58, 70, 51, 72],
+                },
+                {
+                    name: "logins(-1 hours)",
+                    type: "area",
+                    data: [30, 35, 25, 28, 40, 21, 42], // New data with increased variation
+                },
+            ]
+        }
+    }
+}
+
+const clintSidePageLoadData = {
+    answer_type: "graph",
+    graph_type: "page-load",
+    answer: {
+        title: 'Client side page load',
+        data: {
+            xaxis: {
+                name: "Time",
+                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
+            },
+            yaxis: [
+                {
+                    name: "Memory",
+                    data: [60, 65, 55, 58, 70, 51, 72],
+                },
+                {
+                    name: "Logins(-1 hour)",
+                    data: [30, 35, 25, 28, 40, 21, 42],
+                },
+                {
+                    name: "CPU Usage",
+                    data: [20, 18, 23, 21, 30, 25, 15], // New data series 3
+                },
+                {
+                    name: "Disk Usage",
+                    data: [5, 10, 7, 8, 10, 6, 12], // New data series 4
+                },
+                {
+                    name: "Network Traffic",
+                    data: [15, 12, 18, 16, 22, 20, 18], // New data series 5
+                },
+            ]
+        }
+    }
+}
+
+const googleHitsData = {
+    answer_type: "graph",
+    graph_type: "google-hits",
+    answer: {
+        title: 'Google hits',
+        data: {
+            xaxis: {
+                name: "Series",
+                data: ['A-series', 'B-series', 'C-series', 'D-series', 'E-series']
+            },
+            yaxis: [
+                {
+                    name: 'Google hits',
+                    data: [4, 27.7, 37.1, 66.5, 21.2], // Actual data values
+                },
+            ]
+        }
+    }
+}
+
+const supportCallsData = {
+    answer_type: "graph",
+    graph_type: "support-calls",
+    answer: {
+        title: 'Support calls',
+        data: {
+            xaxis: {
+                name: "Series",
+                data: ['A-series', 'B-series', 'C-series', 'D-series', 'E-series']
+            },
+            yaxis: [
+                {
+                    name: 'Value',
+                    data: [30, 50, 35, 50, 49, 110, 70, 91, 350, 30, 90, 32, 50, 35, 59, 49, 130, 70, 91, 103, 30, 92],
+                },
+            ]
+        }
+    }
+}
+const memoryUsageData = {
+    answer_type: "graph",
+    graph_type: "memory-usage",
+    answer: {
+        title: 'Memory',
+        value: 40,
+        data: {
+            xaxis: {},
+            yaxis: []
+        }
+    }
+}
+
+
+
+const GraphComponentRenderer = (props) => {
+    const { data } = props;
+    console.log("data", data)
+    switch (data?.graph_type) {
+        case 'memory-cpu':
+            return  <MemoryCpuChart data={data}/>
+                                
+        case 'logins':
+            return <Logins data={data}/>
+                               
+        case 'clint-page-loading':
+            return  <ClintSidePageLoadChart data={data}/>
+                               
+        case 'google-hits':
+            return  <GoogleHits data={data}/>
+                                
+        case 'combo':
+            return <ComboChats
+                supportCallsData={data.graphs['support-calls']}
+                memoryUsageData={data.graphs['memory-usage']}
+                googleHitsData={data.graphs['google-hits']}
+                signUpsData={data.graphs['sign-ups']}
+            />
+        case 'table':
+            return <CustomTable2 data={data.answer.data} />
+        case 'network':
+            return <CardLayout title={data?.answer.title}>
+                <FlowChart data={data.answer.data} />
+            </CardLayout>
+        case 'tree':
+            return <CardLayout title={data?.answer.title}>
+                <TreeDiagram3 data={data.answer.data} />
+            </CardLayout>
+        default:
+            break;
+    }
+}
+
 export default function Dashboard() {
     const [selectedTabs, setSelectedTabs] = useState({
         network: true, // Tab 1 is always selected
@@ -111,7 +279,10 @@ export default function Dashboard() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
 
-    const { showPopup, setShowPopup, popupRef } = usePopupToggle()
+    const { showPopup, setShowPopup, popupRef } = usePopupToggle();
+
+    const { data: getData, loading: getLoading, error: getError } = useGetApiRequest(graphApis.getGraphs);
+
 
     const handleTabChange = (tab) => {
         if (tab === 'network') return; 
@@ -168,16 +339,22 @@ export default function Dashboard() {
                     </div>
                 </header>
 
-
                 {
                     <div className='dashboard__horizontal'>
                         {
                             selectedTabs.graph && <section className='dashboard__leftSection'>
-                                <MemoryCpuChart />
-                                <Logins />
-                                <ClintSidePageLoadChart />
-                                <GoogleHits />
-                                <ComboChats />
+                                {
+                                    getData?.data?.map((_graph, index) => {
+                                        if (_graph) {
+                                            return <React.Fragment key={index}>
+                                                    <GraphComponentRenderer data={_graph} />
+                                            </React.Fragment>
+                                        }
+                                    })
+                                }
+                                {
+                                    getLoading && <HashLoaderComponent loading={getLoading} />
+                                }
                             </section>
                         }
                         {

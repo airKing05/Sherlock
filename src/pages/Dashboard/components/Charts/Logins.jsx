@@ -1,7 +1,10 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
-export default function Logins() {
+
+
+export default function Logins({data}) {
+    const { title, data: axisData } = data.answer;
     const options = {
         chart: {
             type: 'area',
@@ -25,7 +28,7 @@ export default function Logins() {
         // },
         dataLabels: { enabled: false },
         xaxis: {
-            categories: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"], // Same x-axis for both series
+            categories: axisData.xaxis.data,
             labels: {
                 style: {
                     colors: "#ffffff", // White axis labels
@@ -94,18 +97,7 @@ export default function Logins() {
     };
 
     // Updated Data with Your Provided Values
-    const series = [
-        {
-            name: "login",
-            type: "area",
-            data: [60, 65, 55, 58, 70, 51, 72],
-        },
-        {
-            name: "logins(-1 hours)",
-            type: "area",
-            data: [30, 35, 25, 28, 40, 21, 42], // New data with increased variation
-        },
-    ];
+    const series = axisData.yaxis;
 
     return (
         <div
@@ -118,7 +110,7 @@ export default function Logins() {
                 textAlign: 'center'
             }}
         >
-            <h6 style={{ color: "#fff", width: '100%' }}>Logins</h6>
+            <h6 style={{ color: "#fff", width: '100%' }}>{title}</h6>
             <Chart options={options} series={series} height={200} />
         </div>
     );

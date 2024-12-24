@@ -452,4 +452,8 @@ const serviceApis = {
     createService: (data) => axiosService.post(URL, data),
 };
 
+export const graphApis = {
+    getGraphs: () => axiosService.get(endpoints.GRAPHS),
+}
+
 export default serviceApis;

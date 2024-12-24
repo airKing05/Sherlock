@@ -2,7 +2,10 @@ import React from 'react';
 import Chart from "react-apexcharts";
 import './Charts.scss'
 
-export default function MemoryCpuChart() {
+
+
+export default function MemoryCpuChart({data}) {
+    const {title, data:axisData} = data.answer;
     const options = {
         chart: {
             id: "memory-cpu-combo-chart",
@@ -25,7 +28,7 @@ export default function MemoryCpuChart() {
         },
         dataLabels: { enabled: false },
         xaxis: {
-            categories: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"],
+            categories: axisData.xaxis.data, //["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"],
             labels: {
                 style: {
                     colors: "#ffffff", // White axis labels
@@ -99,24 +102,25 @@ export default function MemoryCpuChart() {
         
     };
 
-    const series = [
-        {
-            name: "Memory",
-            type: "area", // Area chart for Memory
-            data: [2, 3.5, 4, 3.2, 3.8, 2.9, 6],
-        },
-        {
-            name: "CPU",
-            type: "line", // Line chart for CPU
-            data: [1.5, 2.1, 1.8, 2.7, 3.2, 3.8, 5.5],
-        },
-    ];
+    const series = axisData.yaxis;
+    //  [
+    //     {
+    //         name: "Memory",
+    //         type: "area", // Area chart for Memory
+    //         data: [2, 3.5, 4, 3.2, 3.8, 2.9, 6],
+    //     },
+    //     {
+    //         name: "CPU",
+    //         type: "line", // Line chart for CPU
+    //         data: [1.5, 2.1, 1.8, 2.7, 3.2, 3.8, 5.5],
+    //     },
+    // ];
 
     return (
         <div 
         className='custom_memory-cpu'
         style={{ paddingBottom: "2px", background: "#1e1e2f", borderRadius: "2px", margin: '10px', textAlign:'center' }}>
-            <h6 style={{ color: "#fff", width: '100%' }}>Memory / CPU</h6>
+            <h6 style={{ color: "#fff", width: '100%' }}>{title}</h6>
             <Chart options={options} series={series} height={200} />
         </div>
     );

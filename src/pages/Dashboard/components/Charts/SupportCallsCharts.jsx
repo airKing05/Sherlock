@@ -1,15 +1,12 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 
-export default function SupportCallsCharts() {
-    const series = [
-        {
-            name: 'Value',
-            data: [30, 50, 35, 50, 49, 110, 70, 91, 350, 30, 90, 32, 50, 35, 59, 49, 130, 70, 91, 103, 30, 92],
-        },
-    ];
-    const pickPoint = Math.max(...series[0].data);
-    const chartOptions = {
+
+
+export default function SupportCallsCharts({data}) {
+    const { title, data: axisData } = data.answer;
+
+    const options = {
         chart: {
             type: 'area',
             toolbar: {
@@ -59,6 +56,9 @@ export default function SupportCallsCharts() {
         
     };
 
+    const series = axisData.yaxis;
+    const pickPoint = Math.max(...series[0].data);
+
     return (
         <div
             className='custom_memory-cpu'
@@ -69,14 +69,14 @@ export default function SupportCallsCharts() {
                 height: '100px'
             }}
         >
-            <h6 style={{ color: "#fff", width: '100%' }}>Support calls</h6>
+            <h6 style={{ color: "#fff", width: '100%' }}>{title}</h6>
             <span style={{
                 color: '#ffbc00',
                 position: 'absolute',
                 top: '15%'
             }}>{pickPoint}</span>
             <ApexCharts
-                options={chartOptions}
+                options={options}
                 series={series}
                 type="area"
                 // width="100%"

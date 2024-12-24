@@ -1,7 +1,11 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
-export default function ClintSidePageLoadChart() {
+
+
+export default function ClintSidePageLoadChart({data}) {
+    const { title, data: axisData } = data.answer;
+
     const options = {
         chart: {
             id: "client-side-page-load-chart",
@@ -20,7 +24,7 @@ export default function ClintSidePageLoadChart() {
         },
         dataLabels: { enabled: false }, // Disable data labels
         xaxis: {
-            categories: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"], // X-axis values (time)
+            categories: axisData.xaxis.data,
             labels: {
                 style: {
                     colors: "#ffffff", // White axis labels
@@ -75,28 +79,7 @@ export default function ClintSidePageLoadChart() {
     };
 
     // Updated Data with 5 series
-    const series = [
-        {
-            name: "Memory",
-            data: [60, 65, 55, 58, 70, 51, 72],
-        },
-        {
-            name: "Logins(-1 hour)",
-            data: [30, 35, 25, 28, 40, 21, 42],
-        },
-        {
-            name: "CPU Usage",
-            data: [20, 18, 23, 21, 30, 25, 15], // New data series 3
-        },
-        {
-            name: "Disk Usage",
-            data: [5, 10, 7, 8, 10, 6, 12], // New data series 4
-        },
-        {
-            name: "Network Traffic",
-            data: [15, 12, 18, 16, 22, 20, 18], // New data series 5
-        },
-    ];
+    const series = axisData.yaxis;
 
     return (
         <div
@@ -109,7 +92,7 @@ export default function ClintSidePageLoadChart() {
                 textAlign: 'center'
             }}
         >
-            <h6 style={{ color: "#fff", width: '100%' }}>Client side page load</h6>
+            <h6 style={{ color: "#fff", width: '100%' }}>{title}</h6>
             <Chart type="bar" options={options} series={series} height={200} />
         </div>
     );
