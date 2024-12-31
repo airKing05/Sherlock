@@ -4,11 +4,7 @@ import MemoryCpuChart from './components/Charts/MemoryCpuChart';
 import Logins from './components/Charts/Logins';
 import ClintSidePageLoadChart from './components/Charts/ClintSidePageLoadChart';
 import GoogleHits from './components/Charts/GoogleHits';
-import MemoryChart from './components/Charts/MemoryChart';
-import MemoryChat2 from './components/Charts/MemoryChat2';
-import MemoryChart3 from './components/Charts/MemoryChart3';
 import ComboChats from './components/Charts/ComboChats';
-import SupportCallsCharts from './components/Charts/SupportCallsCharts';
 import TreeNetworkDiagram from '../Home/components/TreeDiagram/TreeNetworkDiagram';
 import Chats from '../Chats/Chats';
 import Select from 'react-select';
@@ -16,7 +12,6 @@ import usePopupToggle from '../../Hooks/usePopupToggle';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import CalenderIcon from '../../assets/svg/calender.svg';
-import Button from '../../Common/Button/Button';
 import useGetApiRequest from '../../Hooks/useGetApiRequest';
 import { graphApis } from '../../apis/apis';
 import HashLoaderComponent from '../../Common/Loader/HashLoaderComponent';
@@ -90,148 +85,6 @@ const customStyles = {
 };
 
 
-// chats data
-const memoryCpuData = {
-    answer_type: "graph",
-    graph_type: "memory-cpu",
-    answer: {
-        title: 'Memory / CPU ',
-        data: {
-            xaxis: {
-                name: "Time",
-                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
-            },
-            yaxis: [
-                {
-                    name: "Memory",
-                    type: "area",
-                    data: [2, 3.5, 4, 3.2, 3.8, 2.9, 6],
-                },
-                {
-                    name: "CPU",
-                    type: "line",
-                    data: [1.5, 2.1, 1.8, 2.7, 3.2, 3.8, 5.5],
-                },
-            ]
-        }
-    }
-}
-const loginData = {
-    answer_type: "graph",
-    graph_type: "login",
-    answer: {
-        title: 'Logins',
-        data: {
-            xaxis: {
-                name: "Time",
-                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
-            },
-            yaxis: [
-                {
-                    name: "login",
-                    type: "area",
-                    data: [60, 65, 55, 58, 70, 51, 72],
-                },
-                {
-                    name: "logins(-1 hours)",
-                    type: "area",
-                    data: [30, 35, 25, 28, 40, 21, 42], // New data with increased variation
-                },
-            ]
-        }
-    }
-}
-
-const clintSidePageLoadData = {
-    answer_type: "graph",
-    graph_type: "page-load",
-    answer: {
-        title: 'Client side page load',
-        data: {
-            xaxis: {
-                name: "Time",
-                data: ["16:50", "17:00", "17:10", "17:20", "17:30", "17:40", "17:50"]
-            },
-            yaxis: [
-                {
-                    name: "Memory",
-                    data: [60, 65, 55, 58, 70, 51, 72],
-                },
-                {
-                    name: "Logins(-1 hour)",
-                    data: [30, 35, 25, 28, 40, 21, 42],
-                },
-                {
-                    name: "CPU Usage",
-                    data: [20, 18, 23, 21, 30, 25, 15], // New data series 3
-                },
-                {
-                    name: "Disk Usage",
-                    data: [5, 10, 7, 8, 10, 6, 12], // New data series 4
-                },
-                {
-                    name: "Network Traffic",
-                    data: [15, 12, 18, 16, 22, 20, 18], // New data series 5
-                },
-            ]
-        }
-    }
-}
-
-const googleHitsData = {
-    answer_type: "graph",
-    graph_type: "google-hits",
-    answer: {
-        title: 'Google hits',
-        data: {
-            xaxis: {
-                name: "Series",
-                data: ['A-series', 'B-series', 'C-series', 'D-series', 'E-series']
-            },
-            yaxis: [
-                {
-                    name: 'Google hits',
-                    data: [4, 27.7, 37.1, 66.5, 21.2], // Actual data values
-                },
-            ]
-        }
-    }
-}
-
-const supportCallsData = {
-    answer_type: "graph",
-    graph_type: "support-calls",
-    answer: {
-        title: 'Support calls',
-        data: {
-            xaxis: {
-                name: "Series",
-                data: ['A-series', 'B-series', 'C-series', 'D-series', 'E-series']
-            },
-            yaxis: [
-                {
-                    name: 'Value',
-                    data: [30, 50, 35, 50, 49, 110, 70, 91, 350, 30, 90, 32, 50, 35, 59, 49, 130, 70, 91, 103, 30, 92],
-                },
-            ]
-        }
-    }
-}
-const memoryUsageData = {
-    answer_type: "graph",
-    graph_type: "memory-usage",
-    answer: {
-        title: 'Memory',
-        value: 40,
-        data: {
-            xaxis: {},
-            yaxis: []
-        }
-    }
-}
-
-
-
 const GraphComponentRenderer = (props) => {
     const { data } = props;
     console.log("data", data)
@@ -295,14 +148,6 @@ export default function Dashboard() {
             <div className='dashboard__wrapper'>
                 <header className='dashboard__header'>
                     <ul>
-                        {/* <li
-                        className={selectedView === 'all' ? 'active_dashboard_tab' : ''}
-                        onClick={() => handleTabClick('all')}
-                    >
-                        <input type="checkbox" id="all" name="all" checked={selectedView === 'all'} />
-                        <label for="all">All</label>
-                    </li> */}
-
                         <li
                             // className={selectedView === 'graph' ? 'active_dashboard_tab' : ''}
                             onChange={() => handleTabChange("graph")}
