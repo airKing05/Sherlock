@@ -5,7 +5,7 @@ import MinusIcon from "../../assets/svg/minusWithBorder.svg";
 import HistoryIcon from "../../assets/svg/historyIcon.svg";
 
 
-const LinearStatusView = ({ data, status, title, openStatusPopup = () => { } }) => {
+const LinearStatusView = ({ data, status, title, openStatusPopup = () => { }, openStatusDetailsPopup = () => { } }) => {
     const [tooltip, setTooltip] = useState({ visible: false, day: "", status: "", x: 0, y: 0 });
     const [showBar, setShowBar] = useState(false);
 
@@ -31,7 +31,7 @@ const LinearStatusView = ({ data, status, title, openStatusPopup = () => { } }) 
 
     return (
         <div className="status-container"
-
+            onClick={openStatusDetailsPopup}
         >
             <header>
                 <div className="status__title-section">
@@ -54,7 +54,10 @@ const LinearStatusView = ({ data, status, title, openStatusPopup = () => { } }) 
                         height={20}
                         src={HistoryIcon}
                         alt="icon"
-                        onClick={openStatusPopup}
+                        onClick={(e)=>{
+                            e.stopPropagation();
+                            openStatusPopup();
+                        }}
                     />
                 </div>
 

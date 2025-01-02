@@ -3,8 +3,8 @@ import LinearStatusView from './LinearStatusView';
 import './Status.scss';
 import StatusCard from './StutusCard';
 import StatusPopup from './StatusPopup';
-import HeatmapCalendar from './HeatmapCalendar';
-import HeatmapCalendar2 from './HeatmapCalendar2';
+import Portal from '../../Layouts/Portal/Portal';
+import StatusDetailsPopup from '../../Components/Popups/StatusDetailsPopup/StatusDetailsPopup';
 
 const majorOutage = Array.from({ length: 90 }, (_, index) => ({
     day: `Day ${index + 1}`,
@@ -16,47 +16,12 @@ const normal = Array.from({ length: 90 }, (_, index) => ({
     status: index === 50 ? "yellow" : "green",
 }));
 
-const currentMonth = 6; 
-const currentYear = 2024;
-const heatmapData = [
-    { "date": "2024-12-01", "count": 5 },
-    { "date": "2024-12-02", "count": 1 },
-    { "date": "2024-12-03", "count": 4 },
-    { "date": "2024-12-04", "count": 4 },
-    { "date": "2024-12-05", "count": 4 },
-    { "date": "2024-12-06", "count": 4 },
-    { "date": "2024-12-07", "count": 2 },
-    { "date": "2024-12-08", "count": 5 },
-    { "date": "2024-12-09", "count": 0 },
-    { "date": "2024-12-10", "count": 5 },
-    { "date": "2024-12-11", "count": 0 },
-    { "date": "2024-12-12", "count": 5 },
-    { "date": "2024-12-13", "count": 1 },
-    { "date": "2024-12-14", "count": 2 },
-    { "date": "2024-12-15", "count": 3 },
-    { "date": "2024-12-16", "count": 2 },
-    { "date": "2024-12-17", "count": 0 },
-    { "date": "2024-12-18", "count": 5 },
-    { "date": "2024-12-19", "count": 5 },
-    { "date": "2024-12-20", "count": 2 },
-    { "date": "2024-12-21", "count": 4 },
-    { "date": "2024-12-22", "count": 3 },
-    { "date": "2024-12-23", "count": 3 },
-    { "date": "2024-12-24", "count": 2 },
-    { "date": "2024-12-25", "count": 5 },
-    { "date": "2024-12-26", "count": 4 },
-    { "date": "2024-12-27", "count": 2 },
-    { "date": "2024-12-28", "count": 0 },
-    { "date": "2024-12-29", "count": 0 },
-    { "date": "2024-12-30", "count": 0 },
-    { "date": "2024-12-31", "count": 0 },
-
-];
-
 
 export default function Status() {
     const [showStatusPopup, setShowStatusPopup] = useState(false);
+    const [showStatusDetailsPopup, setShowStatusDetailsPopup] = useState(false);
     return (
+        <>
         <div className='status__wrapper'>
             <section className='status__header'>
                 <StatusCard />
@@ -68,6 +33,8 @@ export default function Status() {
                     status="Normal" 
                     title="User Portal" 
                     openStatusPopup = {() => setShowStatusPopup(true)}
+                    openStatusDetailsPopup={() => setShowStatusDetailsPopup(true)}
+
                     />
                     <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
                     <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
@@ -86,19 +53,16 @@ export default function Status() {
                 }
                
             </main>
-            &nbsp;
-            &nbsp;
-
-            <section className='calendar__section'>
-                <HeatmapCalendar
-                    month={currentMonth}
-                    year={currentYear}
-                    data={heatmapData}
-                    start="2024-11-1"
-                    end="2024-11-31"
-                />
-                <HeatmapCalendar2/>
-            </section>
         </div>
+           
+
+            <Portal
+                isOpen={showStatusDetailsPopup}
+                onClose={() => setShowStatusDetailsPopup(false)}
+            >
+               <StatusDetailsPopup/>
+            </Portal>
+
+        </>
     )
 }

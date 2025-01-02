@@ -1,0 +1,114 @@
+.status-details-popup__wrapper {
+    padding: 20px;
+    min-width: 1200px;
+    min-height: 450px;
+
+    .tabs-container {
+        border-bottom: 2px solid #e0e0e0;
+
+        .tabs {
+            display: flex;
+            position: relative;
+            gap: 10px;
+        }
+
+        .tab {
+            background: none;
+            border: 1px solid transparent;
+            /* Default transparent border */
+            border-bottom: none;
+            /* No bottom border for all tabs */
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #6e6e6e;
+            /* Inactive tab color */
+        }
+
+        .tab.active {
+            color: #1e1e2f;
+            /* Active tab color */
+            font-weight: bold;
+            background: #fff;
+            /* Match the background */
+            border: 2px solid #e0e0e0;
+            /* Border on top, left, right */
+            border-bottom: none;
+            /* Remove the bottom border */
+            border-radius: 5px 5px 0 0;
+            /* Rounded corners for top */
+            position: relative;
+            top: 2px;
+            left: 0;
+            z-index: 1;
+            /* Bring active tab above the container border */
+        }
+
+    }
+
+    .status-content {
+        margin-top: 20px;
+        padding: 10px;
+
+
+
+        .status-content__visual {
+            .status-content__visual-controls {
+                display: flex;
+                justify-content: end;
+
+
+                .month-range-selector {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    gap: 10px;
+
+                    button {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 18px;
+                        color: #4a4a4a;
+                        border: 1px solid #ccc;
+                        border-radius: 2px;
+                        display: flex;
+                        align-items: center;
+                        
+
+                        &:hover {
+                            color: #000;
+                        }
+
+                        &:disabled {
+                            cursor: not-allowed;
+                            color: #ccc;
+                        }
+                    }
+
+                    & button:last-child{
+                        transform: rotate(180deg);
+                    }
+
+                    span {
+                        width: 230px;
+                        color: #2d2d2d;
+                        font-weight: 500;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .status-content__visual-calender {
+                display: flex;
+                // align-items: center;
+                justify-content: space-between;
+                margin-top: 40px;
+            }
+        }
+    }
+
+
+}
