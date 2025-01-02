@@ -1,0 +1,116 @@
+.color-empty {
+    fill: #ebedf0;
+}
+
+.color-scale-1 {
+    fill: #9be9a8;
+}
+
+.color-scale-2 {
+    fill: #40c463;
+}
+
+.color-scale-3 {
+    fill: #30a14e;
+}
+
+.color-scale-4 {
+    fill: #216e39;
+}
+
+
+
+// custom
+// body {
+//     font-family: Arial, sans-serif;
+//     background-color: #1e1e2f;
+//     color: #ffffff;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     margin: 0;
+// }
+
+.calendar-container {
+    max-width: 360px;
+    width: 100%;
+    // margin: 20px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: fit-content;
+}
+
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    // border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-day:hover {
+    transform: scale(1.1);
+}
+
+/* Intensity Classes */
+.intensity-0 {
+    background-color: #e0e0e0;
+}
+
+.intensity-1 {
+    background-color: #d6e685;
+}
+
+.intensity-2 {
+    background-color: #8cc665;
+}
+
+.intensity-3 {
+    background-color: #44a340;
+}
+
+.intensity-4 {
+    background-color: #1e6823;
+}
+
+.intensity-5 {
+    background-color: #0c4f19;
+}
+
+.intensity-6 {
+    background-color: #083d14;
+}
+
+.intensity-8 {
+    background-color: #041d0b;
+}
+
+/* Empty Day Slots for Days Before the First Day of the Month */
+.calendar-day.empty {
+    background-color: transparent;
+    border: none;
+}
+
+/* Adjust Grid Based on the Number of Days */
+.calendar-container {
+    max-width: 100%;
+    width: auto;
+}
+
+@media (max-width: 600px) {
+    .calendar-day {
+        width: 35px;
+        height: 35px;
+        font-size: 10px;
+    }
+}

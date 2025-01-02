@@ -9,6 +9,7 @@ import ProtectedRoute from './authentication/ProtectedRoute';
 import { useState } from 'react';
 import TreeNetworkDiagram from './pages/Home/components/TreeDiagram/TreeNetworkDiagram';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Status from './pages/Status/Status';
 
 
 function App() {
@@ -56,6 +57,14 @@ function App() {
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/status"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <Status />
               </ProtectedRoute>
             }
           />

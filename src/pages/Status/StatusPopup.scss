@@ -1,0 +1,117 @@
+/* StatusPopup.css */
+
+.status-popup {
+    width: 380px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    // height: calc(100vh - 350px);
+}
+
+.status-popup__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.status-popup__title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.status-popup__logo {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.status-popup__right-section{
+    display: flex;
+
+    img{
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: #ff4d4f;
+        cursor: pointer;
+    }
+}
+.status-popup__notification {
+    // background-color: #ff4d4f;
+    border: 1px solid #ff4d4f;
+    color: #1a1a1a;
+    border-radius: 5px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 4px;
+}
+
+.status-popup__body {
+    padding: 16px;
+}
+
+.status-popup__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.status-popup__dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ff4d4f;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-popup__issue {
+    font-weight: bold;
+    color: #ff4d4f;
+    font-size: 15px;
+}
+
+.status-popup__details {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.status-popup__details p {
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.status-popup__timestamp {
+    font-size: 12px;
+    color: #8c8c8c;
+}
+
+.status-popup__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    // border-top: 1px solid #e8e8e8;
+    // background-color: #f7f7f7;
+}
+
+.status-popup__link {
+    font-size: 13px;
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.status-popup__link:hover {
+    text-decoration: underline;
+}
