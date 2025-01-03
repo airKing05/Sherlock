@@ -1,0 +1,90 @@
+
+.add-subscriber__container {
+    width: 400px;
+    padding: 20px;
+    position: relative; 
+}
+
+.add-subscriber__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-subscriber__title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.add-subscriber__close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.add-subscriber__body {
+    margin-bottom: 20px;
+}
+
+.add-subscriber__field {
+    margin-bottom: 15px;
+}
+
+.add-subscriber__label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.add-subscriber__input,
+.add-subscriber__select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.add-subscriber__input--checkbox{
+    width: fit-content;
+    margin-top: 0;
+    position: relative;
+    top: -3px;
+}
+.add-subscriber__label--checkbox{
+    text-transform: uppercase;
+}
+
+.add-subscriber__components-list{
+    list-style: none;
+
+    li{
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+    }
+}
+
+.add-subscriber__footer {
+    text-align: right;
+}
+
+.add-subscriber__add-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.add-subscriber__add-btn:hover {
+    background: #0056b3;
+}

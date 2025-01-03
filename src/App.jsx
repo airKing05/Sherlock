@@ -10,6 +10,7 @@ import { useState } from 'react';
 import TreeNetworkDiagram from './pages/Home/components/TreeDiagram/TreeNetworkDiagram';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Status from './pages/Status/Status';
+import StatusLanding from './pages/Status/StatusLanding';
 
 
 function App() {
@@ -65,6 +66,14 @@ function App() {
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Status />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/status-landing"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <StatusLanding />
               </ProtectedRoute>
             }
           />

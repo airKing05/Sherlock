@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LinearStatusView from './LinearStatusView';
 import './Status.scss';
 import StatusCard from './StutusCard';
 import StatusPopup from './StatusPopup';
 import Portal from '../../Layouts/Portal/Portal';
 import StatusDetailsPopup from '../../Components/Popups/StatusDetailsPopup/StatusDetailsPopup';
+import { useLocation } from 'react-router-dom';
 
 const majorOutage = Array.from({ length: 90 }, (_, index) => ({
     day: `Day ${index + 1}`,
@@ -20,30 +21,45 @@ const normal = Array.from({ length: 90 }, (_, index) => ({
 export default function Status() {
     const [showStatusPopup, setShowStatusPopup] = useState(false);
     const [showStatusDetailsPopup, setShowStatusDetailsPopup] = useState(false);
+    const [subscribedServices, setSubscribedServices] = useState([]);
+
+    const location = useLocation();
+
+
+    useEffect(() => {
+        setSubscribedServices((prevState) => [...prevState, ...location.state.components])
+    }, [location.state])
+    
     return (
         <>
         <div className='status__wrapper'>
-            <section className='status__header'>
+            {/* <header className='status__header'>
+                <button
+                    onClick={() => setShowAddServicePopup(true)}
+                >
+                    subscribe to updates
+                </button>
+            </header> */}
+            <section>
                 <StatusCard />
             </section>
             <main className='status__main'>
-                <div className='status__left-section'>
-                    <LinearStatusView 
-                    data={normal} 
-                    status="Normal" 
-                    title="User Portal" 
-                    openStatusPopup = {() => setShowStatusPopup(true)}
-                    openStatusDetailsPopup={() => setShowStatusDetailsPopup(true)}
+                    <div className='status__left-section'>
+                        {
+                            subscribedServices.length ? subscribedServices.map((_service, index) => {
+                                return <React.Fragment key={index}>
+                                    <LinearStatusView
+                                        data={_service.dataType === 'normal' ? normal : majorOutage}
+                                        status={_service.dataType === 'normal' ? "Normal" : "Major Outage"}
+                                        title={_service.title}
+                                        openStatusPopup={() => setShowStatusPopup(true)}
+                                        openStatusDetailsPopup={() => setShowStatusDetailsPopup(true)}
+                                    />
+                                </React.Fragment>
+                            }) : null
+                        }
 
-                    />
-                    <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
-                    <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
-
-                    <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
-
-                    <LinearStatusView data={majorOutage} status="Major Outage" title="Admin Portal" />
-
-                </div>
+                    </div>
                 {
                     showStatusPopup && <div className='status__right-section'>
                         <StatusPopup 
@@ -54,8 +70,6 @@ export default function Status() {
                
             </main>
         </div>
-           
-
             <Portal
                 isOpen={showStatusDetailsPopup}
                 onClose={() => setShowStatusDetailsPopup(false)}

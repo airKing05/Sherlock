@@ -1,5 +1,27 @@
+
 .status__wrapper{
     padding: 20px;
+}
+
+.status__header{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+
+    button{
+        border: none;
+        background-color: transparent;
+        text-transform: uppercase;
+        border: 1px solid #7b1b1b;
+        color: #7b1b1b;
+        padding: 10px 20px;
+        border-radius: 5px;
+
+        &:hover{
+            background-color: #7b1b1b;
+            color: #fff;
+        }
+    }
 }
 
 .status__main {

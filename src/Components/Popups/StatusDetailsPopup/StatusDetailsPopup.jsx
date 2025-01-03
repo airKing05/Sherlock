@@ -94,7 +94,32 @@ export default function StatusDetailsPopup() {
                 </div>
             </header>
             <div className="status-content">
-                {activeTab === "Incidents" && <section className='status-content__details'>Content for Incidents</section>}
+                {
+                    activeTab === "Incidents" &&
+                    <section className='status-content__details'>
+                        <div className="status-popup__body">
+                            <div className="status-popup__item">
+                                <span className="status-popup__dot"></span>
+                                <span className="status-popup__issue">Login Issues</span>
+                            </div>
+                            <div className="status-popup__details">
+                                <p>
+                                    <strong>Identified</strong> - We’ve identified the login issue due to a recent code push
+                                    and are in the process of rolling back our latest deploy. All customers are currently
+                                    affected.
+                                </p>
+                                <span className="status-popup__timestamp">Jul 19, 2016 3:11PM</span>
+                            </div>
+                            <div className="status-popup__details">
+                                <p>
+                                    <strong>Investigating</strong> - We’ve received a few reports of customers unable to
+                                    login to the dashboard and are looking into the issue.
+                                </p>
+                                <span className="status-popup__timestamp">Jul 19, 2016 2:45PM</span>
+                            </div>
+                        </div>
+                    </section>
+                }
                 {
                     activeTab === "Uptime" && <section className='status-content__visual'>
                         <div className='status-content__visual-controls'>
