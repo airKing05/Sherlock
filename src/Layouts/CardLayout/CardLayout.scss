@@ -1,7 +1,7 @@
 @use '../../commonStyles/index' as *;
 
 .cardWrapper {
-    width: 80%;
+    // width: 80%;
     max-width: 800px;
 }
 
@@ -42,7 +42,7 @@
      align-items: center;
 
     &:hover {
-            background-color: #1e1e2f;
+            background-color: $primary-color-light-90; //#1e1e2f;
             border-radius: 2px;
         }
  }

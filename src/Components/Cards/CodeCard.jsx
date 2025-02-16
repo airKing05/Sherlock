@@ -1,20 +1,23 @@
 import React from 'react';
-import { CopyBlock, CodeBlock, dracula } from 'react-code-blocks';
+import { CodeBlock, dracula } from 'react-code-blocks';
 
-const customData = `for(let i = 0; i<=5; i++){
-    console.log(i)
-    }`;
-export default function CodeCard({data = customData}) {
-   
+const customData = `for (let i = 0; i <= 5; i++) {
+    console.log(i);
+}`;
+
+export default function CodeCard({ data = customData }) {
     return (
+        <div>
             <CodeBlock
-                style={{ background: 'yellow' }}
                 text={data}
-                language={'javaScript'}
-                showLineNumbers={true}
+                language="javascript"
+                showLineNumbers
                 theme={dracula}
-                codeBlock
-                lines={['1:2', 8]}
-            ></CodeBlock>
-    )
+            />
+        </div>
+    );
 }
+
+
+
+

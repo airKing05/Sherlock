@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./PageLayout.scss";
 import Chats from '../../pages/Chats/Chats';
 import ChatIcon from '../../assets/svg/chatIcon.svg';
-import CrossIcon from '../../assets/svg/crossIcon.svg';
+import CrossIcon from '../../assets/svg/crossBlackIcon.svg';
 import LeftMenu from '../../Components/LeftMenu/LeftMenu';
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PlusIcon from "../../assets/svg/plusIcon.svg";
-import MinusIcon from "../../assets/svg/minusIcon.svg";
+import PlusIcon from "../../assets/svg/plusBlackIcon.svg";
+import MinusIcon from "../../assets/svg/minusBlackIcon.svg";
 import Chip from '../Chip/Chip';
 import CodeCard from './CodeCard';
 import { HtmlRenderer, ListRenderer, PictureRenderer } from '../../Common/smallComponents/smallComponents';

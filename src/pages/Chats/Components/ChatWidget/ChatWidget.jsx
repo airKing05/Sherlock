@@ -29,7 +29,7 @@ export default function ChatWidget(props) {
                     </div>
                 </main>
                 {
-                    chatFor !== ME ? <footer className='chatWidget__footer row'>
+                    chatFor !== ME ? <footer className='chatWidget__footer'>
                         <ul className='chatWidget__footer__iconList'>
                             <li>
                                 <img src={ReloadIcon} alt='ReloadIcon' />

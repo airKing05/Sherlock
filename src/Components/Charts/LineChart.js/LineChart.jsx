@@ -47,7 +47,7 @@ export default function LineChart({ data = customData, widgetType = "" }) {
 
             // set the dimensions and margins of the graph
             const margin = { top: 50, right: 30, bottom: 50, left: 50 },
-                width = (widgetType === 'chat' ? 440 :  740) - margin.left - margin.right,
+                width = (widgetType === 'chat' ? 400 :  740) - margin.left - margin.right,
                 height = (widgetType === 'chat' ? 300 : 400) - margin.top - margin.bottom;
 
             // append the svg object to the body of the page
@@ -176,7 +176,7 @@ export default function LineChart({ data = customData, widgetType = "" }) {
             // Add X axis
             const x = d3.scaleTime()
                 .domain(d3.extent(parsedData, d => d.date))
-                .range([0, width]);
+                .range([0, width+40]);
         
             svg.append("g")
                 .attr("class", "axis")
