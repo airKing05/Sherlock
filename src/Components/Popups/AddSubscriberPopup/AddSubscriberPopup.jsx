@@ -15,42 +15,121 @@ const subscribedServicesList = [
 ]
 export default function AddSubscriberPopup({setShowAddServicePopup }) {
     const [isEmailVerified, setIsEmailVerified] = useState(false); 
-    const [email, setEmail] = useState('');
-    const [serviceToSubscribe, setServiceToSubscribe] = useState({
-        title: '',
-        url: '',
-        dataType: 'normal'
-    })
+    const [inputs, setInputs] = useState({
+        email: '',
+        company: '',
+        subDomain: '',
+    });
     const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
     const [selectedComponents, setSelectedComponents] = useState(availableComponents);
+    const [errors, setErrors] = useState({
+        email: '',
+        company: '',
+        subDomain: '',
+        // components: ''
+    })
+    // const [isError, setIsError] = useState(false);
 
     const navigate = useNavigate();
     const emailFromStorage = localStorage.getItem('email');
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        if(!isEmailVerified){
-            setEmail(value);
-        }else{
-            console.log("change called", name, value)
-            setServiceToSubscribe(() => ({
-                ...serviceToSubscribe,
-                [name]: value
-            }))
+
+    const validateEmail = (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!value){
+            setErrors((preErrors) => ({ ...preErrors, email: 'Email is empty' }));
+            // setIsError(true);
         }
-        
+        if (emailRegex.test(value)){
+            setErrors((preErrors) => ({ ...preErrors, email : ''}))
+            // setIsError(false);
+        }else{
+            setErrors((preErrors) => ({ ...preErrors, email: 'Invalid email' }));
+            // setIsError(true);
+        }
     }
 
-    const handelVerifyEmail = () => {
-        localStorage.setItem('email', JSON.stringify(email))
+    const validateInputFields = (objectToValidate) => {
+        const {email, company, subDomain } = objectToValidate;
 
+         validateEmail(email);
+
+        if (!company){
+            setErrors((preErrors) => ({ ...preErrors, company: 'Company name is empty' }));
+            // setIsError(true);
+        }else if (company.length>5) {
+            setErrors((preErrors) => ({ ...preErrors, company: '' }));
+            // setIsError(false);
+        } else {
+            setErrors((preErrors) => ({ ...preErrors, company: 'Company name is invalid' }));
+            // setIsError(true);
+        }
+        
+        if (!subDomain) {
+            setErrors((preErrors) => ({ ...preErrors, subDomain: 'Sub-domain name is empty' }));
+            // setIsError(true);
+        }else if (subDomain.length > 5){
+            // check if domain already exist
+            setErrors((preErrors) => ({ ...preErrors, subDomain: '' }));
+            // setIsError(false);
+        } else {
+            setErrors((preErrors) => ({ ...preErrors, subDomain: 'Sub-domain is invalid' }));
+            // setIsError(true);
+        }
+
+    }
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setInputs(() => ({
+            ...inputs,
+            [name]: value
+        }))
+    }
+
+    const checkIsErrorExist = (errors) => {
+        let isErrorExist = false;
+        for (const error in errors) {
+            console.log(error, errors, errors[error])
+
+            if (error && errors[error]) {
+                isErrorExist = true;
+            }
+        }
+
+        console.log("isErrorExist", isErrorExist)
+        if (!isErrorExist){
+            setIsEmailVerified(true)
+        }
+        return isErrorExist;
+    }
+    const handelNextForm = () => {
+        const {email, company, subDomain} = inputs;
+        localStorage.setItem('email', JSON.stringify(email))
+        validateInputFields(inputs)
+     
         setTimeout(() => {
-            setIsEmailSubmitted(true)
+            checkIsErrorExist(errors)
         }, 500);
+        // setTimeout(() => {
+        //     isErrorExist = checkIsErrorExist(errors)
+        // }, 500);
+
+        // if (isErrorExist && !isErrorExist) {
+        //     setIsEmailSubmitted(true)
+        //     isErrorExist
+        // }
+      
+        // if (!checkIsErrorExist(errors)) {
+        //     setTimeout(() => {
+        //         setIsEmailSubmitted(true)
+        //         setIsEmailVerified(true)
+        //     }, 500);
+        // }
+
     };
 
     const handleAddServiceToSubscribe = () => {
-        console.log("serviceToSubscribe", serviceToSubscribe, selectedComponents)
         setShowAddServicePopup(false);
        
         for (const component in selectedComponents) {
@@ -73,12 +152,13 @@ export default function AddSubscriberPopup({setShowAddServicePopup }) {
         setSelectedComponents((prev) => ({ ...prev, [component]: !prev[component] }));
     }
 
-    useEffect(() => {
-        if (isEmailSubmitted){
-          setIsEmailVerified(true)
-      }
-    }, [emailFromStorage, isEmailSubmitted])
+    // useEffect(() => {
+    //     if (isEmailSubmitted){
+    //       setIsEmailVerified(true)
+    //   }
+    // }, [emailFromStorage, isEmailSubmitted])
     
+    console.log("sdfsad", emailFromStorage, isEmailSubmitted, isEmailVerified)
 
     return (
         <div className="add-subscriber__container">
@@ -118,11 +198,16 @@ export default function AddSubscriberPopup({setShowAddServicePopup }) {
                         <>
                             <div className="add-subscriber__field">
                                 <label className="add-subscriber__label">
-                                    Email address
+                                    <div className="add-subscriber__label-titles">
+                                        <span>Email address</span>
+                                        {
+                                            errors['email'] && <span className='text-error'>{errors['email']}</span>
+                                        }
+                                    </div>
                                     <input
                                         type="email"
                                         className="add-subscriber__input"
-                                        placeholder="example@email.com"
+                                        placeholder="example@email.comasas"
                                         name='email'
                                         onChange={(e) => handleInputChange(e)}
                                     />
@@ -130,7 +215,12 @@ export default function AddSubscriberPopup({setShowAddServicePopup }) {
                             </div>
                             <div className="add-subscriber__field">
                                 <label className="add-subscriber__label">
-                                    Company name
+                                    <div className="add-subscriber__label-titles">
+                                        <span> Company name</span>
+                                        {
+                                            errors['company'] && <span className='text-error'>{errors['company']}</span>
+                                        }
+                                    </div>
                                     <input
                                         type="text"
                                         className="add-subscriber__input"
@@ -142,12 +232,17 @@ export default function AddSubscriberPopup({setShowAddServicePopup }) {
                             </div>
                             <div className="add-subscriber__field">
                                 <label className="add-subscriber__label">
-                                    Sub domain
+                                    <div className="add-subscriber__label-titles">
+                                        <span> Sub domain</span>
+                                        {
+                                            errors['subDomain'] && <span className='text-error'>{errors['subDomain']}</span>
+                                        }
+                                    </div>
                                     <input
                                         type="text"
                                         className="add-subscriber__input"
                                         placeholder="sherlock"
-                                        name='sub-domain'
+                                        name='subDomain'
                                         onChange={(e) => handleInputChange(e)}
                                     />
                                 </label>
@@ -158,7 +253,7 @@ export default function AddSubscriberPopup({setShowAddServicePopup }) {
             </div>
             <div className="add-subscriber__footer">
                 <button className="add-subscriber__add-btn"
-                    onClick={isEmailVerified ? handleAddServiceToSubscribe : handelVerifyEmail}
+                    onClick={isEmailVerified ? handleAddServiceToSubscribe : handelNextForm}
                 >
                     {
                         !isEmailVerified ? 'Next for status page' : 'save components'
