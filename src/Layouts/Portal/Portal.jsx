@@ -15,7 +15,9 @@ export default function Portal({ children, isOpen, onClose }) {
                 <button className="close-button" onClick={onClose}>
                     <img src={CrossIcon} alt='icon'/>
                 </button>
-                {children}
+                <div className='popup-details'>
+                    {children}
+                </div>
             </div>
         </div>,
         document.getElementById("portal-root")

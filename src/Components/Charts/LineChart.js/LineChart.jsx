@@ -56,7 +56,7 @@ export default function LineChart({ data = customData, widgetType = "" }) {
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g')
-                .attr('transform', `translate(${ widgetType === 'chat' ? 20 : margin.left},${margin.top})`);
+                .attr('transform', `translate(20,${margin.top})`);
 
             // //Read the data
             // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
@@ -176,7 +176,7 @@ export default function LineChart({ data = customData, widgetType = "" }) {
             // Add X axis
             const x = d3.scaleTime()
                 .domain(d3.extent(parsedData, d => d.date))
-                .range([0, width+40]);
+                .range([0, width+50]);
         
             svg.append("g")
                 .attr("class", "axis")

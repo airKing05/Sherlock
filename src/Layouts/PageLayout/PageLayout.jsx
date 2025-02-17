@@ -18,7 +18,7 @@ export default function PageLayout({ children, route }) {
                     {children}
                 </section>
                 {
-                    route === 'chat' && <section className={`pageLayout__container__rightSection ${isRightSectionCollapsed ? 'collapsedRight' : ''}`}>
+                    route === 'chat' || 'investigation' && <section className={`pageLayout__container__rightSection ${isRightSectionCollapsed ? 'collapsedRight' : ''}`}>
                         {
                             isRightSectionCollapsed ? <div className='pageLayout__container__rightSection__renderIcon'>
                                 <span

@@ -9,6 +9,8 @@ import HistoryIcon from '../../assets/svg/historyIcon.svg';
 import LoginIcon from '../../assets/svg/loginIcon.svg';
 import LogoutIcon from '../../assets/svg/logoutIcon.svg';
 import TreeNetworkIcon from '../../assets/svg/treeNetwork.svg';
+import InvestigationIcon from '../../assets/svg/investigation.svg';
+
 
 
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -71,30 +73,38 @@ export default function LeftMenu({ isRightSectionCollapsed }) {
 
 
             <div className="sidebar__menu">
-                <button
+                {/* <button
                     className={`menu-item ${activeMenuItem === "chat" ? "active" : ""}`}
                     onClick={() => handleMenuItemClick("chat", '/')}
                 >
                     <span>
                         <img src={ChatIcon} alt='icon' />
                     </span> {!isCollapsed && 'Chats'} 
-                </button>
+                </button> */}
                 <button
+                    className={`menu-item ${activeMenuItem === "investigation" ? "active" : ""}`}
+                    onClick={() => handleMenuItemClick("investigation", '/investigation')}
+                >
+                    <span>
+                        <img src={InvestigationIcon} alt='icon' />
+                    </span> {!isCollapsed && 'Investigation'}
+                </button>
+                {/* <button
                     className={`menu-item ${activeMenuItem === "history" ? "active" : ""}`}
                     onClick={() => handleMenuItemClick("history", '/history')}
                 >
                     <span>
                         <img src={HistoryIcon} alt='icon'/>
                     </span> {!isCollapsed && 'History'} 
-                </button>
-                <button
+                </button> */}
+                {/* <button
                     className={`menu-item ${activeMenuItem === "treeNetwork" ? "active" : ""}`}
                     onClick={() => handleMenuItemClick("history", '/tree-network')}
                 >
                     <span>
                         <img src={TreeNetworkIcon} alt='icon' />
                     </span> {!isCollapsed && 'Tree-Network'}
-                </button>
+                </button> */}
                 <button
                     className={`menu-item ${activeMenuItem === "sign-in" ? "active" : ""}`}
                     onClick={() => handleSignout()}

@@ -19,7 +19,7 @@ import TreeDiagram3 from './components/TreeDiagram/TreeDiagram3'
 import HorizontalTreeDiagram from './components/TreeDiagram/HorizontalTreeDiagram'
 
 
-const HomeComponentRenderer = (props) => {
+export const HomeComponentRenderer = (props) => {
     const { data } = props;
     switch (data?.answer_type) {
         case 'checklist':
@@ -41,7 +41,7 @@ const HomeComponentRenderer = (props) => {
         case 'timeline':
             return <HorizontalTimeline2 data={data} />
         case 'table':
-            return <CustomTable2 data={data.answer.data}/>
+            return <CustomTable2 data={data.answer.data} hasActionColumn={true}/>
         case 'network':
             return <CardLayout title={data?.answer.title}>
                 <FlowChart data={data.answer.data} />
@@ -57,55 +57,7 @@ const HomeComponentRenderer = (props) => {
 
 export default function Home() {
     const [cards, setCards] = useState([]);
-    // const { executePost, loading: postLoading, error: postError} = usePostApiRequest(serviceApis.createService);
     const { data: getData, loading: getLoading, error: getError } = useGetApiRequest(serviceApis.getService)
-
-    // console.log("getData", getData, getLoading, getError)
-    // const handleSubmit = (payload) => {
-    //     executePost(payload)
-    //         .then((resp) => {
-    //             setCards((prevCard) => [...prevCard, resp])
-    //         })
-    //         .catch((err) => console.log("error", err))
-    // };
-
-    // useEffect(() => {
-    //     const payloads = [
-    //         {
-    //             question: 'service status',
-    //         },
-    //         {
-    //             question: 'summary',
-    //         },
-    //         {
-    //             question: 'code',
-    //         },
-    //         {
-    //             question: 'graph',
-    //         },
-    //         {
-    //             question: 'timeline',
-    //         },
-    //         {
-    //             question: 'table',
-    //         },
-    //         {
-    //             question: 'network',
-    //         }
-    //     ];
-
-    //     if (!cards.length){
-    //         for (const _payload of payloads) {
-    //             handleSubmit(_payload);
-    //         }
-    //     }
-
-    // }, [cards.length])
-
-
-    
-
-   
 
     if (getLoading){
         return <HashLoaderComponent loading={getLoading} />
@@ -115,7 +67,7 @@ export default function Home() {
         <div>
             {
                 getData?.data?.map((_card, index) => {
-                    if (_card){
+                    if (_card.answer_type === 'table'){
                         return <React.Fragment key={index}>
                             <HomeComponentRenderer data={_card} />
                             <br />
@@ -126,9 +78,9 @@ export default function Home() {
             }
 
 
-            <CardLayout title={'horizontal Tree'}>
+            {/* <CardLayout title={'horizontal Tree'}>
                 <HorizontalTreeDiagram />
-            </CardLayout>
+            </CardLayout> */}
 
         </div>
     )

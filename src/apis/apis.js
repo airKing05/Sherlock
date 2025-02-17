@@ -450,6 +450,8 @@ const expressServerURL = 'http://localhost:3001/';
 const serviceApis = {
     getService: () => axiosService.get(endpoints.SERVICE),
     createService: (data) => axiosService.post(URL, data),
+    getChatInvestigationDetailsService: (id) => axiosService.get(endpoints.CHAT_INVESTIGATION_DETAILS(id)),
+    getChatInvestigationService: () => axiosService.get(endpoints.CHAT_INVESTIGATION),
 };
 
 export const graphApis = {

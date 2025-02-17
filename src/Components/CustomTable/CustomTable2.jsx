@@ -5,63 +5,8 @@ import Portal from '../../Layouts/Portal/Portal';
 import TableActionPopup from './TableActionPopup';
 
 
-const customData2 = {
-    rows: [
-        {
-            "id": 1,
-            "name": "Leanne Graham",
-            "username": "Bret",
-            "email": "Sincere@april.biz",
-            "phone": "1-770-736-8031",
-            "website": "hildegard.org",
-        },
-        {
-            "id": 2,
-            "name": "Ervin Howell",
-            "username": "Antonette",
-            "email": "Shanna@melissa.tv",
-            "phone": "010-692-6593",
-            "website": "anastasia.net",
-        },
-        {
-            "id": 3,
-            "name": "Clementine Bauch",
-            "username": "Samantha",
-            "email": "Nathan@yesenia.net",
-            "phone": "1-463-1234447",
-            "website": "ramiro.info",
-        },
-    ],
-    cols: [
-        {
-            field: 'id',
-            title: 'Id'
-        },
-        {
-            field: 'name',
-            title: 'Name'
-        },
-        {
-            field: 'username',
-            title: 'User Name'
-        },
-        {
-            field: 'email',
-            title: 'Email Id'
-        },
-        {
-            field: 'phone',
-            title: 'Contact'
-        },
-        {
-            field: 'website',
-            title: 'Bio'
-        }
-    ]
-}
 
-
-export default function CustomTable2({ data = customData2, hasActionColumn = false }) {
+export default function CustomTable2({ data, hasActionColumn = false, handleOpenHistoryDetails=()=>{} }) {
     const [sortConfig, setSortConfig] = useState(null);
     const [activeMenu, setActiveMenu] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
@@ -95,9 +40,13 @@ export default function CustomTable2({ data = customData2, hasActionColumn = fal
     };
 
     const handleAction = (action, rowIndex) => {
-        console.log(`Action: ${action}, Row Index: ${rowIndex}`);
+        if (action === 'history-details'){
+            handleOpenHistoryDetails(rowIndex);
+            setActiveMenu(null);
+            return;
+        }
         setActiveMenu(null);
-        setSelectedRow(customData2.rows[rowIndex]);
+        setSelectedRow(data.rows[rowIndex]);
         setAction(action);
         setOpenActionPopup(true);
     };
@@ -152,8 +101,9 @@ export default function CustomTable2({ data = customData2, hasActionColumn = fal
                                     </button>
                                     {activeMenu === rowIdx && (
                                         <div className="menu-popup">
-                                            <div onClick={() => handleAction("delete", rowIdx)}>Delete</div>
-                                            <div onClick={() => handleAction("edit", rowIdx)}>Edit</div>
+                                            {/* <div onClick={() => handleAction("delete", rowIdx)}>Delete</div> */}
+                                            {/* <div onClick={() => handleAction("edit", rowIdx)}>Edit</div> */}
+                                            <div onClick={() => handleAction("history-details", rowIdx)}>Open Details</div>
                                         </div>
                                     )}
                                 </td>

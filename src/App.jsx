@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.scss'
 import Home from './pages/Home/Home';
 import History  from './pages/History/History';
@@ -11,6 +11,8 @@ import TreeNetworkDiagram from './pages/Home/components/TreeDiagram/TreeNetworkD
 import Dashboard from './pages/Dashboard/Dashboard';
 import Status from './pages/Status/Status';
 import StatusLanding from './pages/Status/StatusLanding';
+import Investigation from './pages/Investigation/Investigation';
+import InvestigationDetails from './pages/InvestigationDetails/InvestigationDetails';
 
 
 function App() {
@@ -22,7 +24,7 @@ function App() {
     <>
       <BrowserRouter basename="">
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
@@ -31,6 +33,29 @@ function App() {
                 </PageLayout>
             </ProtectedRoute>
              
+            }
+          /> */}
+          <Route path="/" element={<Navigate to="/investigation" replace />} />
+          <Route
+            path="/investigation"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <PageLayout route="investigation">
+                  <Investigation />
+                </PageLayout>
+              </ProtectedRoute>
+
+            }
+          />
+          <Route
+            path="/investigation/:investigationId"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <PageLayout route="investigationDetails">
+                  <InvestigationDetails/>
+                </PageLayout>
+              </ProtectedRoute>
+
             }
           />
           <Route
